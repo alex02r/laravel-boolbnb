@@ -43,7 +43,15 @@ class StoreApartmentRequest extends FormRequest
             'title.required' => 'Il titolo è obbligatorio',
             'title.unique' => 'Il titolo che hai inseito è già esistente',
 
-            
+            /* messaggi per l'address */
+            'address.required' => 'L\'indirizzo deve essere obbligatorio',
+
+            /* messaggi per rooms */
+            'rooms.required' => 'É obbligatorio inserire il numero di stanze',
+            'rooms.min' => 'Non puoi inserire meno di 0 stanze',
+            'rooms.max' => 'Il numero massimo di stanze è 255',
+            'rooms.numeric' => 'Il campo stanze deve essere un numero',
+            'rooms.integer' => 'Il campo stanze deve essere un numero intero',
 
         ];
     }
