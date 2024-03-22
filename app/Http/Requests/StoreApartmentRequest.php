@@ -25,21 +25,25 @@ class StoreApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required', 
             'title' => 'required|unique:'.Apartment::class, 
+            'address' => 'required',
             'rooms' => 'required|min:0|max:255|numeric|integer', 
             'bathrooms' => 'required|min:0|max:255|numeric|integer', 
             'beds' => 'required|min:0|max:255|numeric|integer', 
-            'square_meters' => 'required',,
-            'address' => 'required',,
-            'lat' => 'required',,
-            'lon' => 'required',,
+            'square_meters' => 'required',
+            'lat' => 'required',
+            'lon' => 'required',
             'cover_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'show',
         ];
     }
     public function messages(){
         return [
+            /* messaggi per il titolo*/
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.unique' => 'Il titolo che hai inseito è già esistente',
+
+            
 
         ];
     }
