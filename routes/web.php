@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ApartmentController;
@@ -19,10 +20,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::middleware(['auth','verified'])
     ->name('user.')
     ->prefix('user')
     ->group(function(){
+        // ROTTA PER LA DASHBOARD IN CUI ATTERRA L'UTENTE DOPO AVER EFF. LOGIN
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/apartment', ApartmentController::class);
 });
 
