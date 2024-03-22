@@ -20,7 +20,7 @@ class ApartmentController extends Controller
     {       
         $apartments = Apartment::where('user_id', auth()->user()->id)->get();
 
-        return view('admin.apartment.index', compact('apartments'));
+        return view('user.apartment.index', compact('apartments'));
     }
 
     /**
@@ -54,7 +54,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartment.show', compact('apartment'));
+        return view('user.apartment.show', compact('apartment'));
     }
 
     /**
