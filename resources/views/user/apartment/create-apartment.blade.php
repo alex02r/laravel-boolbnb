@@ -25,8 +25,6 @@
                     
                     {{-- inserimento dell'indirizzo --}}
                     <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
-                    <input type="text" class="d-none" name="lat" id="lat"> {{-- campo nascosto --}}
-                    <input type="text" class="d-none" name="lon" id="lon"> {{-- campo nascosto --}}
 
                     <label for="search">Inserisci l'indirizzo:</label>
                     <div id="search">
@@ -71,8 +69,8 @@
                     </div>
                     {{-- seleziona visibilità --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="checkVisibility" name="checkVisibility">
-                        <label class="form-check-label" for="checkVisibility">
+                        <input class="form-check-input" type="checkbox" value="" id="show" name="show">
+                        <label class="form-check-label" for="show">
                           Visibile
                         </label>
                     </div>
