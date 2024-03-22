@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 
 class ApartmentController extends Controller
 {
@@ -41,8 +42,21 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        dd($request);
-        $form_data = $request->validated();
+        $form_data = $request->all();
+        dump($form_data);
+        
+        //creo nuova classe aparment
+        $new_apartment = new Apartment();
+
+        //Variabile che ci permette di eseguire la chiamata API anche lato server
+        $httpsAgent = new \GuzzleHttp\Client(['verify' => false]);
+        //definiamo l'API KEY per la chiamata API
+        $api_key = env('VITE_TOMTOM_API_KEY');
+        //definiamo l'url per la chimata API
+        $url = env('VITE_TOMTOM_BASE_URL').'/search/2/search/';
+        //aseggno l'indirizzo a una variabile query
+        $query = $form_data['address'];
+
 
     }
 
