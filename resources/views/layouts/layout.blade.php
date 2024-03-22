@@ -14,6 +14,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -66,7 +69,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.dashboard') }}">{{ __('Dashboard') }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('user.dashboard') }}">{{ __('Dashboard') }}</a>
                                     <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -98,8 +102,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{-- {{ route('admin.apartments.index') }} --}}" class="nav-link text-white {{-- {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }} --}}">
-                                    <i class="fa-solid fa-newspaper fa-lg fa-fw"></i>
+                                <a href="{{ route('user.apartment.index') }}"
+                                    class="nav-link text-white {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
+                                    <i class="fa-solid fa-house fa-lg fa-fw"></i>
                                     Apartments
                                 </a>
                             </li>
