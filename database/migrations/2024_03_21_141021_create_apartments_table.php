@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('address');
             $table->integer('rooms');
             $table->integer('bathrooms');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('square_meters');
             $table->decimal('lat', 10, 7);
             $table->decimal('lon', 10, 7);
-            $table->string('cover_img');
+            $table->string('cover_img')->nullable();
             $table->boolean('show');
             $table->timestamps();
         });
