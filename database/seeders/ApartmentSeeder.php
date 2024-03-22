@@ -13,8 +13,6 @@ class ApartmentSeeder extends Seeder
         $apartments = [
             [
                 'title' => 'Appartamento Luminoso Centro Storico',
-                'city' => 'Roma',
-                'zip_code' => '00100',
                 'address' => 'Via Roma 10',
                 'rooms' => 3,
                 'bathrooms' => 2,
@@ -27,8 +25,6 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Attico Vista Mare',
-                'city' => 'Napoli',
-                'zip_code' => '80100',
                 'address' => 'Via Napoli 20',
                 'rooms' => 4,
                 'bathrooms' => 2,
@@ -41,8 +37,6 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Casa Rustica in Campagna',
-                'city' => 'Toscana',
-                'zip_code' => '50100',
                 'address' => 'Strada Provinciale 10',
                 'rooms' => 5,
                 'bathrooms' => 3,
@@ -55,8 +49,6 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Loft Moderno',
-                'city' => 'Milano',
-                'zip_code' => '20100',
                 'address' => 'Via Milano 30',
                 'rooms' => 2,
                 'bathrooms' => 1,
@@ -69,8 +61,6 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Bilocale Centro Città',
-                'city' => 'Torino',
-                'zip_code' => '10100',
                 'address' => 'Via Torino 40',
                 'rooms' => 1,
                 'bathrooms' => 1,
