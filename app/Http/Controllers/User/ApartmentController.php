@@ -7,6 +7,9 @@ use App\Models\Apartment;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -60,7 +63,7 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        return view('user.apartments.edit', compact('apartment'));
     }
 
     /**
@@ -72,7 +75,27 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $form_apartments = $request->all();
+
+        // VERIFICO SE LA RICHIESTA CONTIENE IL CAMPO cover_image
+        if ($request->hasFile('cover_image')) {
+            // Se il post ha un'immagine
+            if ($apartment->cover_image != null) {
+                Storage::disk('public')->delete($apartment->cover_image);
+            }
+            // Eseguo l'upload del file e recupero il path
+            $path = Storage::disk('public')->put('apartment_image', $form_apartments['cover_image']);
+            $form_apartments['cover_image'] = $path;
+        }
+
+        // LO SLUG LO RECUPERO IN UN SECONDO MOMENTO, IN QUANTO NON LO PASSO NEL FORM
+        // $form_apartments['slug'] = Str::slug($form_apartments['title'], '-');
+
+        // SALVO I DATI
+        $apartment->update($form_apartments);
+
+        // FACCIO IL REDIRECT ALLA PAGINA SHOW 
+        return redirect()->route('user.apartments.index');
     }
 
     /**
