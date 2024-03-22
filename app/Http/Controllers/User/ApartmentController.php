@@ -17,10 +17,9 @@ class ApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(user $user)
-    {
-        
-        $apartments = Apartment::where('user_id', $user->id);
+    public function index(User $user)
+    {       
+        $apartments = Apartment::where('user_id', auth()->user()->id);
 
         return view('admin.apartment.index', compact('apartments'));
     }
