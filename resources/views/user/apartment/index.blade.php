@@ -42,7 +42,7 @@
                                     <div class="d-flex">
                                         <a href="{{ route('user.apartment.show', ['apartment' => $apartment->id]) }}"
                                             class="btn btn-sm btn-primary me-1"><i
-                                                class="fa-solid fa-magnifying-glass"></i></a>
+                                                class="fas fa-eye"></i></a>
 
                                         <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                             class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
