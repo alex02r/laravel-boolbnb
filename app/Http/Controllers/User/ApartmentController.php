@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -76,7 +77,23 @@ class ApartmentController extends Controller
             return redirect()->route('user.apartment.create');
         }
         //definiamo lo slug
-        $new_apartment->slug = Str::slug($form_data['title'], '-');;
+        $new_apartment->slug = Str::slug($form_data['title'], '-');
+        //assegnamo l'id dell'utente loggato allo user_id
+        $new_apartment->user_id = Auth::user()->id;
+
+        //controlliamo la checkbox
+        if ($form_data['show'] == 1) {
+            //il checkbox è selezionato e settiamo true il parametro show
+            $new_apartment->show = true;
+        }else{
+            $new_apartment->show = false;
+        }
+
+        //Salviamo l'appartamento nel db
+        $new_apartment->save();
+
+
+        return redirect()->route('user.apartment.inex');
     }
 
     /**
