@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Apartment;
+use Illuminate\Support\Str;
 
 class ApartmentSeeder extends Seeder
 {
@@ -13,8 +14,6 @@ class ApartmentSeeder extends Seeder
         $apartments = [
             [
                 'title' => 'Appartamento Luminoso Centro Storico',
-                'city' => 'Roma',
-                'zip_code' => '00100',
                 'address' => 'Via Roma 10',
                 'rooms' => 3,
                 'bathrooms' => 2,
@@ -22,13 +21,12 @@ class ApartmentSeeder extends Seeder
                 'square_meters' => 120,
                 'lat' => 41.9028,
                 'lon' => 12.4964,
-                'cover_img' => null,
+                'cover_img' => 'null',
                 'show' => true,
+                'user_id' => 1,
             ],
             [
                 'title' => 'Attico Vista Mare',
-                'city' => 'Napoli',
-                'zip_code' => '80100',
                 'address' => 'Via Napoli 20',
                 'rooms' => 4,
                 'bathrooms' => 2,
@@ -36,13 +34,12 @@ class ApartmentSeeder extends Seeder
                 'square_meters' => 150,
                 'lat' => 40.8518,
                 'lon' => 14.2681,
-                'cover_img' => null,
+                'cover_img' => 'null',
                 'show' => true,
+                'user_id' => 1,
             ],
             [
                 'title' => 'Casa Rustica in Campagna',
-                'city' => 'Toscana',
-                'zip_code' => '50100',
                 'address' => 'Strada Provinciale 10',
                 'rooms' => 5,
                 'bathrooms' => 3,
@@ -50,13 +47,12 @@ class ApartmentSeeder extends Seeder
                 'square_meters' => 200,
                 'lat' => 43.7696,
                 'lon' => 11.2558,
-                'cover_img' => null,
+                'cover_img' => 'null',
                 'show' => true,
+                'user_id' => 1,
             ],
             [
                 'title' => 'Loft Moderno',
-                'city' => 'Milano',
-                'zip_code' => '20100',
                 'address' => 'Via Milano 30',
                 'rooms' => 2,
                 'bathrooms' => 1,
@@ -64,13 +60,12 @@ class ApartmentSeeder extends Seeder
                 'square_meters' => 90,
                 'lat' => 45.4642,
                 'lon' => 9.1900,
-                'cover_img' => null,
+                'cover_img' => 'null',
                 'show' => true,
+                'user_id' => 3,
             ],
             [
                 'title' => 'Bilocale Centro Città',
-                'city' => 'Torino',
-                'zip_code' => '10100',
                 'address' => 'Via Torino 40',
                 'rooms' => 1,
                 'bathrooms' => 1,
@@ -80,9 +75,28 @@ class ApartmentSeeder extends Seeder
                 'lon' => 7.6869,
                 'cover_img' => null,
                 'show' => true,
+                'user_id' => 2,
             ]
         ];
 
-        Apartment::insert($apartments);
+        //ciclo tutti gli elementi dell'array
+        foreach ($apartments as $apartment) {
+            $new_apartment = new Apartment();
+
+            $new_apartment->title = $apartment['title'];
+            $new_apartment->address = $apartment['address'];
+            $new_apartment->rooms = $apartment['rooms'];
+            $new_apartment->bathrooms = $apartment['bathrooms'];
+            $new_apartment->beds = $apartment['beds'];
+            $new_apartment->square_meters = $apartment['square_meters'];
+            $new_apartment->lat = $apartment['lat'];
+            $new_apartment->lon = $apartment['lon'];
+            $new_apartment->cover_img = $apartment['cover_img'];
+            $new_apartment->show = $apartment['show'];
+            //definiamo lo slug
+            $new_apartment->slug = Str::slug($apartment['title'], '-');
+
+            $new_apartment->save();
+        }
     }
 }

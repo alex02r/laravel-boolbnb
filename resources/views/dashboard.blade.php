@@ -13,8 +13,8 @@
                     <div class="card-body">
 
                         <div class="alert bg-body-secondary" role="alert">
-                            <a href="{{-- {{ route('admin.apartments.index') }} --}}" class="nav-link text-dark {{-- {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }} --}}">
-                                <i class="fa-solid fa-newspaper fa-lg fa-fw"></i>
+                            <a href="{{ route('user.apartment.index') }}"
+                                class="nav-link text-dark {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
                                 APARTMENTS
                             </a>
                         </div>
