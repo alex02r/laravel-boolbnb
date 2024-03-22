@@ -57,6 +57,8 @@ class ApartmentController extends Controller
         //aseggno l'indirizzo a una variabile query
         $query = $form_data['address'];
 
+        //effettuiamo la chiamata
+        $response = $httpsAgent->get($url . $query . '.json?key='.$api_key.'&language=it-IT');
 
     }
 
