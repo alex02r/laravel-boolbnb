@@ -9,6 +9,7 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -63,10 +64,10 @@ class ApartmentController extends Controller
         //convertiamo l'array dei risultati in array associativo 
         $results = json_decode($response->getBody(), true);
         $results = $results['results'][0];
-        dump($results);
 
         //controlliamo che l'array contenga un risultato e che corrisponda all'indirizzo inserito nella form
         if(!empty($results) && $results['address']['freeformAddress'] == $query){
+            $new_apartment->fill($form_data);
             //inseriamo le cordinate trovate
             $new_apartment->lat = $results['position']['lat'];
             $new_apartment->lon = $results['position']['lon'];
@@ -74,6 +75,8 @@ class ApartmentController extends Controller
             $error_message = 'L\'indirizzo che hai trovato non è stato trovato.';
             return redirect()->route('user.apartment.create');
         }
+        //definiamo lo slug
+        $new_apartment->slug = Str::slug($form_data['title'], '-');;
     }
 
     /**
