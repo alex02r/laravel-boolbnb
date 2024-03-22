@@ -30,7 +30,7 @@ class StoreApartmentRequest extends FormRequest
             'rooms' => 'required|min:0|max:255|numeric|integer', 
             'bathrooms' => 'required|min:0|max:255|numeric|integer', 
             'beds' => 'required|min:0|max:255|numeric|integer', 
-            'square_meters' => 'required',
+            'square_meters' => 'required|min:10|numeric|integer',
             'lat' => 'required',
             'lon' => 'required',
             'cover_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
@@ -66,6 +66,12 @@ class StoreApartmentRequest extends FormRequest
             'beds.max' => 'Il numero massimo di letti è 255',
             'beds.numeric' => 'Il campo letti deve essere un numero',
             'beds.integer' => 'Il campo letti deve essere un numero intero',
+
+            /* messaggi per square_meters */
+            'square_meters.required' => 'É obbligatorio inserire i metri quadrati',
+            'square_meters.min' => 'Il numero minimo di metri quadrati è 10',
+            'square_meters.numeric' => 'Il campo metri quadrati deve essere un numero',
+            'square_meters.integer' => 'Il campo metri quadrati deve essere un numero intero',
 
         ];
     }
