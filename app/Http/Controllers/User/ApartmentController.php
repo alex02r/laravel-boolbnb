@@ -27,7 +27,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.apartment.create-apartment');
     }
 
     /**
