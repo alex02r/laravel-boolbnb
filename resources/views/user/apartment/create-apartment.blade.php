@@ -16,6 +16,10 @@
                             <label for="city" class="form-label">Inserisci la città:</label>
                             <input type="text" class="form-control" name="city" id="city">
                         </div>
+                        <div>
+                            <label for="zip_code" class="form-label">Inserisci il cap della città:</label>
+                            <input type="text" class="form-control" name="zip_code" id="zip_code">
+                        </div>
                     </div>
                     {{-- inserimento dell'indirizzo --}}
                     <div class="mb-3">
@@ -26,5 +30,5 @@
             </div>
         </div>
     </div>
-    <script src="resources/js/app.js"></script>
+    
 @endsection
