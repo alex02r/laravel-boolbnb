@@ -65,6 +65,11 @@ class ApartmentController extends Controller
         $results = $results['results'][0];
         dump($results);
 
+        //controlliamo che l'array contenga un risultato e che corrisponda all'indirizzo inserito nella form
+        if(!empty($results) && $results['address']['freeformAddress'] == $query){
+            dump($results['address']['freeformAddress']);
+            dump($query);
+        }
     }
 
     /**
