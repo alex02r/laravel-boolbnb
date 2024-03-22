@@ -60,6 +60,11 @@ class ApartmentController extends Controller
         //effettuiamo la chiamata
         $response = $httpsAgent->get($url . $query . '.json?key='.$api_key.'&language=it-IT');
 
+        //convertiamo l'array dei risultati in array associativo 
+        $results = json_decode($response->getBody(), true);
+        $results = $results['results'][0];
+        dump($results);
+
     }
 
     /**
