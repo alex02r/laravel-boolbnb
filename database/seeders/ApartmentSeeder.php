@@ -19,7 +19,7 @@ class ApartmentSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for($i = 0; $i < 5; $i++) {
+        foreach (range(1, 5) as $index){
             Apartment::create([
                 'title' => $faker->sentence,
                 'city' => $faker->city,
