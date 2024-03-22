@@ -18,7 +18,8 @@
                                 APARTMENTS
                             </a>
                         </div>
-
+                        {{-- DA RIMUOVERE --}}
+                        <a href="{{ route('user.apartment.create') }}">Inserisci apartments </a>
 
                         {{ __('You are logged in!') }}
                     </div>
