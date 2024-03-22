@@ -72,7 +72,7 @@ class ApartmentController extends Controller
             $new_apartment->lon = $results['position']['lon'];
         }else{
             $error_message = 'L\'indirizzo che hai trovato non è stato trovato.';
-            return redirect()->route('user.apartment.create', compact('error_message'));
+            return redirect()->route('user.apartment.create');
         }
     }
 
