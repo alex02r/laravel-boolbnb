@@ -38,4 +38,9 @@ class StoreApartmentRequest extends FormRequest
             'show',
         ];
     }
+    public function messages(){
+        return [
+
+        ];
+    }
 }
