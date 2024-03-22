@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Apartment;
 use App\Models\User;
-
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
@@ -17,9 +16,9 @@ class ApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index()
     {       
-        $apartments = Apartment::where('user_id', auth()->user()->id);
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
 
         return view('admin.apartment.index', compact('apartments'));
     }
