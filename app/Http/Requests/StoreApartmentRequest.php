@@ -53,6 +53,13 @@ class StoreApartmentRequest extends FormRequest
             'rooms.numeric' => 'Il campo stanze deve essere un numero',
             'rooms.integer' => 'Il campo stanze deve essere un numero intero',
 
+            /* messaggi per bathrooms */
+            'bathrooms.required' => 'É obbligatorio inserire il numero di bagni',
+            'bathrooms.min' => 'Non puoi inserire meno di 0 bagni',
+            'bathrooms.max' => 'Il numero massimo di bagni è 255',
+            'bathrooms.numeric' => 'Il campo bagni deve essere un numero',
+            'bathrooms.integer' => 'Il campo bagni deve essere un numero intero',
+
         ];
     }
 }
