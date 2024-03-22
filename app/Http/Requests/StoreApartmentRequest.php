@@ -60,6 +60,13 @@ class StoreApartmentRequest extends FormRequest
             'bathrooms.numeric' => 'Il campo bagni deve essere un numero',
             'bathrooms.integer' => 'Il campo bagni deve essere un numero intero',
 
+            /* messaggi per beds */
+            'beds.required' => 'É obbligatorio inserire il numero di letti',
+            'beds.min' => 'Non puoi inserire meno di 0 letti',
+            'beds.max' => 'Il numero massimo di letti è 255',
+            'beds.numeric' => 'Il campo letti deve essere un numero',
+            'beds.integer' => 'Il campo letti deve essere un numero intero',
+
         ];
     }
 }
