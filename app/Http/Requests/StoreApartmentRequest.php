@@ -31,10 +31,7 @@ class StoreApartmentRequest extends FormRequest
             'bathrooms' => 'required|min:0|max:255|numeric|integer', 
             'beds' => 'required|min:0|max:255|numeric|integer', 
             'square_meters' => 'required|min:10|numeric|integer',
-            'lat' => 'required',
-            'lon' => 'required',
             'cover_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
-            'show',
         ];
     }
     public function messages(){
@@ -73,6 +70,8 @@ class StoreApartmentRequest extends FormRequest
             'square_meters.numeric' => 'Il campo metri quadrati deve essere un numero',
             'square_meters.integer' => 'Il campo metri quadrati deve essere un numero intero',
 
+            /* messaggi per l'immagine */
+            'cover_img.image' => 'Non hai inserito un file suppoortato. Inserisci solo file jpeg,png,jpg,gif,svg'
         ];
     }
 }
