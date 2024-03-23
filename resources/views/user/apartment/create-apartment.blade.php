@@ -26,7 +26,10 @@
                     {{-- inserimento dell'immagine --}}
                     <div class="mb-3">
                         <label for="cover_img" class="form-label">Inserisci un immagine:</label>
-                        <input class="form-control" type="file" id="cover_img" name="cover_img">
+                        <input class="form-control" type="file" id="cover_img" name="cover_img" value="{{ old('cover_img') }}">
+                        @error('cover_img')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     {{-- inserimento dell'indirizzo --}}
