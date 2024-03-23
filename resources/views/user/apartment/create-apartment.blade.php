@@ -23,6 +23,12 @@
                         @enderror
                     </div>
                     
+                    {{-- inserimento dell'immagine --}}
+                    <div class="mb-3">
+                        <label for="cover_img" class="form-label">Inserisci un immagine:</label>
+                        <input class="form-control" type="file" id="cover_img" name="cover_img">
+                    </div>
+
                     {{-- inserimento dell'indirizzo --}}
                     <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
 
