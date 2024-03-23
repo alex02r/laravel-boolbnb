@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -86,6 +87,12 @@ class ApartmentController extends Controller
             $new_apartment->show = true;
         }else{
             $new_apartment->show = false;
+        }
+
+        //controlliamo se l'utente abbia inserito un immagine
+        if ($request->hasFile('cover_img')) {
+            //creaiamo il path e lo assegnamo all'apartment
+            $new_apartment->cover_img = Storage::disk('public')->put('uploads', $form_data['cover_img']);
         }
 
         //Salviamo l'appartamento nel db
