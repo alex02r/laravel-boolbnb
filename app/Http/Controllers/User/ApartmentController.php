@@ -99,7 +99,7 @@ class ApartmentController extends Controller
         $new_apartment->save();
 
 
-        return redirect()->route('user.apartment.inex');
+        return redirect()->route('user.apartment.index');
     }
 
     /**
