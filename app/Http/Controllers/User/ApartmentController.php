@@ -45,7 +45,6 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         $form_data = $request->all();
-        dump($form_data);
         
         //creo nuova classe aparment
         $new_apartment = new Apartment();
