@@ -12,7 +12,7 @@
                             </ul>
                         </div>
                     @endif
-                <form action="{{ route('user.apartment.store') }}" method="post">
+                <form action="{{ route('user.apartment.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{-- inserimento del titolo --}}
                     <div class="mb-3">
