@@ -12,7 +12,7 @@
                             </ul>
                         </div>
                     @endif
-                <form action="{{ route('user.apartment.store') }}" method="post">
+                <form action="{{ route('user.apartment.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{-- inserimento del titolo --}}
                     <div class="mb-3">
@@ -23,6 +23,15 @@
                         @enderror
                     </div>
                     
+                    {{-- inserimento dell'immagine --}}
+                    <div class="mb-3">
+                        <label for="cover_img" class="form-label">Inserisci un immagine:</label>
+                        <input class="form-control" type="file" accept=".png, .jpg, .jpeg, .gif, .svg" id="cover_img" name="cover_img" value="{{ old('cover_img') }}">
+                        @error('cover_img')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     {{-- inserimento dell'indirizzo --}}
                     <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
 

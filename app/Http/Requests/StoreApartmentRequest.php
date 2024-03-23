@@ -71,7 +71,7 @@ class StoreApartmentRequest extends FormRequest
             'square_meters.integer' => 'Il campo metri quadrati deve essere un numero intero',
 
             /* messaggi per l'immagine */
-            'cover_img.image' => 'Non hai inserito un file suppoortato. Inserisci solo file jpeg,png,jpg,gif,svg'
+            'cover_img.mimes' => 'Non hai inserito un file suppoortato. Inserisci solo file jpeg,png,jpg,gif,svg'
         ];
     }
 }
