@@ -15,7 +15,7 @@ const address = document.getElementById('address')
 const btnAdd = document.getElementById('btnAdd') 
 
 //inseriamo l'api in una variabile
-let api = "hr4ctYlqY1McGvola1seXuSFgR5grVBj"
+let api = import.meta.env.VITE_TOMTOM_API_KEY;
 
 //inizializiamo la searchbox di tomtom
 let options = {
@@ -29,8 +29,8 @@ let options = {
     language: "it-IT",
     },
 }
-var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
-var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+let ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 //facciamo l'append della searchbox al div container
 div.append(searchBoxHTML)
 

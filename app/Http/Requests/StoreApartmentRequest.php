@@ -38,7 +38,7 @@ class StoreApartmentRequest extends FormRequest
         return [
             /* messaggi per il titolo*/
             'title.required' => 'Il titolo è obbligatorio',
-            'title.unique' => 'Il titolo che hai inseito è già esistente',
+            'title.unique' => 'Il titolo che hai inserito è già esistente',
 
             /* messaggi per l'address */
             'address.required' => 'L\'indirizzo deve essere obbligatorio',
