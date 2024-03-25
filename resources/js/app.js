@@ -34,6 +34,14 @@ var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 //facciamo l'append della searchbox al div container
 div.append(searchBoxHTML)
 
+//recuperiamo il valore dell'attributo old-value
+let old = div.getAttribute('old-value');
+//controlliamo se nell'attributo old sia stato inserito il vecchio indirizzo
+if (old != "") {
+    //assegnamo all'input il valore del vecchio indirizzo
+    address.value = ttSearchBox.setValue(old)
+}
+
 //al click del pulsante per l'invio dei dati inviamo il valore della searchbox all'input address
 btnAdd.addEventListener('click', ()=>{
     address.value = ttSearchBox.getValue()
