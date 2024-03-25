@@ -53,12 +53,12 @@
                                     </div>
                                 </td>
                             </tr>
+                            {{-- POP-UP MODALE --}}
+                            @include('user.apartment.modal_delete')
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    {{-- POP-UP MODALE --}}
-    @include('user.apartment.modal_delete')
 @endsection
