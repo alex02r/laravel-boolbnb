@@ -47,7 +47,7 @@
                                         <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                             class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
                                         {{-- MODALE DELETE --}}
-                                        <button type="button" class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
+                                        <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </div>
@@ -59,4 +59,6 @@
             </div>
         </div>
     </div>
+    {{-- POP-UP MODALE --}}
+    @include('user.apartment.modal_delete')
 @endsection

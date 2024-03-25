@@ -209,6 +209,6 @@ class ApartmentController extends Controller
         }
         $apartment->delete();
 
-        return redirect()->route('user.apartments.index');
+        return redirect()->route('user.apartment.index');
     }
 }
