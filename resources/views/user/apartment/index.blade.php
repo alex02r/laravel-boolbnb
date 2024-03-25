@@ -46,8 +46,8 @@
 
                                         <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                             class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
-
-                                        <button type="button" class="btn_delete btn btn-sm btn-danger">
+                                        {{-- MODALE DELETE --}}
+                                        <button type="button" class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </div>
