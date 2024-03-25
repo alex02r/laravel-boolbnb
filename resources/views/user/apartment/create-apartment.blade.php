@@ -15,6 +15,7 @@
                 <form action="{{ route('user.apartment.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{-- inserimento del titolo --}}
+                    <h2>Inserisci un nuovo apartment: </h2>
                     <div class="mb-3">
                         <label for="title" class="form-label">Inserisci il titolo:</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" required>
