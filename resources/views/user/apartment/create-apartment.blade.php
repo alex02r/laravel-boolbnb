@@ -43,9 +43,9 @@
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                        @if (session('error_message'))
+                        @if (session('error_address'))
                             <div class="alert alert-danger">
-                                {{ session('error_message') }}
+                                {{ session('error_address') }}
                             </div>
                         @endif
                     </div>

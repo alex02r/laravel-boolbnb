@@ -39,16 +39,16 @@
                                 <td class="d-none d-lg-table-cell">{{ $apartment->lat }}</td>
                                 <td class="d-none d-lg-table-cell">{{ $apartment->lon }}</td>
                                 <td class="d-none d-lg-table-cell">
-                                    {{ $apartment->cover_img !== 'null' ? 'Immagine presente' : 'Immagine non presente' }}
+                                    {{ $apartment->cover_img !== null ? 'Immagine presente' : 'Immagine non presente' }}
                                 </td>
                                 <td>
-                                    <div class="d-flex flex-column d-md-flex flex-md-row">
+                                    <div class="d-flex flex-column d-md-flex flex-md-row gap-2">
                                         <a href="{{ route('user.apartment.show', ['apartment' => $apartment->id]) }}"
-                                            class="btn btn-sm btn-primary me-1 btn-size d-flex align-items-center justify-content-center"><i
+                                            class="btn btn-sm btn-primary"><i
                                                 class="fas fa-eye"></i></a>
 
                                         <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
-                                            class="btn btn-sm btn-warning me-1 btn-size d-flex align-items-center justify-content-center "><i
+                                            class="btn btn-sm btn-warning"><i
                                                 class="fa-solid fa-pencil"></i></a>
                                         {{-- MODALE DELETE --}}
                                         <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
