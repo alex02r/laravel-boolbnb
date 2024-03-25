@@ -75,7 +75,7 @@ class ApartmentController extends Controller
             $new_apartment->lon = $results['position']['lon'];
         }else{
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
-            return redirect()->route('user.apartment.create')->withErrors(['address' => $error_message])->withInput();
+            return redirect()->route('user.apartment.create')->withErrors(['address'=>$error_message]);
         }
         //definiamo lo slug
         $new_apartment->slug = Str::slug($form_data['title'], '-');
@@ -83,7 +83,7 @@ class ApartmentController extends Controller
         $new_apartment->user_id = Auth::user()->id;
 
         //controlliamo la checkbox
-        if ($form_data['show'] == 1) {
+        if ($request->has('show')) {
             //il checkbox è selezionato e settiamo true il parametro show
             $new_apartment->show = true;
         }else{
@@ -163,7 +163,7 @@ class ApartmentController extends Controller
             $new_apartment->lon = $results['position']['lon'];
         } else {
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
-            return redirect()->route('user.apartment.create')->withErrors(['address' => $error_message])->withInput();
+            return redirect()->route('user.apartment.edit', ['apartment'=>$apartment])->withErrors(['address' => $error_message]);
         }
         //definiamo lo slug
         $new_apartment->slug = Str::slug($form_data['title'], '-');
@@ -171,7 +171,7 @@ class ApartmentController extends Controller
         $new_apartment->user_id = Auth::user()->id;
 
         //controlliamo la checkbox
-        if ($form_data['show'] == 1) {
+        if ($request->has('show') == 1) {
             //il checkbox è selezionato e settiamo true il parametro show
             $new_apartment->show = true;
         } else {
@@ -193,7 +193,7 @@ class ApartmentController extends Controller
         $new_apartment->update($form_data);;
 
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
-        return redirect()->route('user.apartment.show');
+        return redirect()->route('user.apartment.index');
     }
 
     /**
