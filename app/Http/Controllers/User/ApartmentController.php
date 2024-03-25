@@ -66,8 +66,7 @@ class ApartmentController extends Controller
 
         //convertiamo l'array dei risultati in array associativo 
         $results = json_decode($response->getBody(), true);
-        $results = $results['results'][0];
-
+        $results = $results['results'];
         //controlliamo che l'array contenga un risultato e che corrisponda all'indirizzo inserito nella form
         if(!empty($results) && $results['address']['freeformAddress'] == $query){
             $new_apartment->fill($form_data);
@@ -154,8 +153,7 @@ class ApartmentController extends Controller
 
         //convertiamo l'array dei risultati in array associativo 
         $results = json_decode($response->getBody(), true);
-        $results = $results['results'][0];
-
+        $results = $results['results'];
         //controlliamo che l'array contenga un risultato e che corrisponda all'indirizzo inserito nella form
         if (!empty($results) && $results['address']['freeformAddress'] == $query) {
             $new_apartment->fill($form_data);
@@ -165,7 +163,8 @@ class ApartmentController extends Controller
         } else {
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
             return redirect()->route('user.apartment.edit', ['apartment'=>$apartment])->with('error_address', $error_message);
-        }
+        } 
+
         //definiamo lo slug
         $new_apartment->slug = Str::slug($form_data['title'], '-');
         //assegnamo l'id dell'utente loggato allo user_id
