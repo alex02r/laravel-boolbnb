@@ -19,7 +19,7 @@
                         <label for="title" class="form-label">Inserisci il titolo:</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" required>
                         @error('title')
-                            <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     
@@ -28,13 +28,15 @@
                         <label for="cover_img" class="form-label">Inserisci un immagine:</label>
                         <input class="form-control" type="file" accept=".png, .jpg, .jpeg, .gif, .svg" id="cover_img" name="cover_img" value="{{ old('cover_img') }}">
                         @error('cover_img')
-                            <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
+                    
                     {{-- inserimento dell'indirizzo --}}
-                    <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
-
+                    <div class="d-none">
+                        <input type="text" name="address" id="address"> {{-- campo nascosto --}}
+                    </div>
+                    
                     <label for="search">Inserisci l'indirizzo:</label>
                     <div id="search" old-value="{{ old('address') }}">
                         @error('address')
@@ -90,4 +92,4 @@
             </div>
         </div>
     </div>
-@endsection
+    @endsection
