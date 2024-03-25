@@ -46,8 +46,6 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        //refresh della session
-        $request->session()->regenerate();
 
         $form_data = $request->all();
         
@@ -78,7 +76,7 @@ class ApartmentController extends Controller
             $new_apartment->lon = $results['position']['lon'];
         }else{
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
-            return redirect()->route('user.apartment.create')->withErrors(['address' => $error_message]);
+            return redirect()->route('user.apartment.create')->with('error_address',$error_message);
         }
         //definiamo lo slug
         $new_apartment->slug = Str::slug($form_data['title'], '-');
@@ -166,7 +164,7 @@ class ApartmentController extends Controller
             $new_apartment->lon = $results['position']['lon'];
         } else {
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
-            return redirect()->route('user.apartment.edit', ['apartment'=>$apartment])->withErrors(['address' => $error_message]);
+            return redirect()->route('user.apartment.edit', ['apartment'=>$apartment])->with('error_address', $error_message);
         }
         //definiamo lo slug
         $new_apartment->slug = Str::slug($form_data['title'], '-');
