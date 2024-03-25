@@ -51,7 +51,6 @@
                                             class="btn btn-sm btn-warning me-1 btn-size d-flex align-items-center justify-content-center "><i
                                                 class="fa-solid fa-pencil"></i></a>
                                         {{-- MODALE DELETE --}}
-<<<<<<< HEAD
                                         <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
