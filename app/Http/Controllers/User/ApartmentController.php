@@ -144,6 +144,11 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        if($apartment->cover_img != null){
+            Storage::disk('public')->delete($apartment->cover_img);
+        }
+        $apartment->delete();
+
+        return redirect()->route('user.apartments.index');
     }
 }
