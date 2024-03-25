@@ -68,11 +68,11 @@ class ApartmentController extends Controller
         $results = json_decode($response->getBody(), true);
         $results = $results['results'];
         //controlliamo che l'array contenga un risultato e che corrisponda all'indirizzo inserito nella form
-        if(!empty($results) && $results['address']['freeformAddress'] == $query){
+        if(!empty($results) && $results[0]['address']['freeformAddress'] == $query){
             $new_apartment->fill($form_data);
             //inseriamo le cordinate trovate
-            $new_apartment->lat = $results['position']['lat'];
-            $new_apartment->lon = $results['position']['lon'];
+            $new_apartment->lat = $results[0]['position']['lat'];
+            $new_apartment->lon = $results[0]['position']['lon'];
         }else{
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
             return redirect()->route('user.apartment.create')->with('error_address',$error_message);
