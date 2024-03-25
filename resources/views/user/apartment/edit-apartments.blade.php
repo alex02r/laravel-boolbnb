@@ -41,7 +41,9 @@
                     </div>
 
                     {{-- inserimento dell'indirizzo --}}
-                    <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
+                    <div class="d-none">
+                        <input type="text" name="address" id="address" required> {{-- campo nascosto --}}
+                    </div>
 
                     <label for="search">Inserisci l'indirizzo:</label>
                     <div id="search" old-value="{{ old('address') ?? $apartment->address }}">
