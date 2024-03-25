@@ -176,7 +176,7 @@ class ApartmentController extends Controller
         $apartment->user_id = Auth::user()->id;
 
         //controlliamo la checkbox
-        if ($request->has('show') == 1) {
+        if ($request->has('show')) {
             //il checkbox è selezionato e settiamo true il parametro show
             $apartment->show = true;
         } else {
@@ -195,7 +195,7 @@ class ApartmentController extends Controller
         }
 
         // SALVO I DATI
-        $apartment->update($form_data);;
+        $apartment->update($form_data);
 
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
         return redirect()->route('user.apartment.show', compact('apartment'));
