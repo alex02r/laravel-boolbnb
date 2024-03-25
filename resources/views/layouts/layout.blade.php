@@ -19,9 +19,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{-- Tomtom --}}
-    <link rel="stylesheet" type="text/css"href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
+    <link rel="stylesheet"
+        type="text/css"href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js">
+    </script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js">
+    </script>
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -96,26 +99,26 @@
 
         <main class="container-fluid vh-100">
             <div class="row h-100">
-                <nav id="sidebar" class="col-md-1 col-lg-2 d-md-block bg-dark navbar-dark  sidebar collapse">
+                <nav id="sidebar" class="col-1 col-md-2 d-block px-0 bg-dark navbar-dark  sidebar collapse">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('user.dashboard') }}"
-                                    class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-secondary' : '' }}">
-                                    <i class="fa-solid fa-tachometer fa-lg fa-fw"></i>
-                                    Dashboard
+                                    class="py-2 px-0 nav-link text-white w-100 text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.dashboard' ? 'bg-secondary' : '' }}">
+                                    <i class="fa-solid fa-tachometer fa-md fa-fw"></i>
+                                    <span class="d-none d-md-inline-block"> Dashboard </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('user.apartment.index') }}"
-                                    class="nav-link text-white {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
-                                    <i class="fa-solid fa-house fa-lg fa-fw"></i>
-                                    Apartments
+                                    class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
+                                    <i class="fa-solid fa-house fa-md fa-fw "></i>
+                                    <span class="d-none d-md-inline-block"> Apartment </span>
                                 </a>
                             </li>
                         </ul>
                 </nav>
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3">
+                <main class="col-11 ms-sm-auto col-md-10 px-md-4 pt-3 color_main d-flex justify-content-center p-0">
                     @yield('content')
                 </main>
             </div>

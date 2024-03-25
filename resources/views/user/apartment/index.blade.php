@@ -9,7 +9,8 @@
                 </h3>
                 <div class="d-flex">
                     <h5 class="text-secondary text-uppercase">Aggiungi appartamento</h5>
-                    <a href="{{ route('user.apartment.create') }}" class="btn btn-sm btn-secondary mx-2"><i class="fas fa-plus"></i></a>
+                    <a href="{{ route('user.apartment.create') }}" class="btn btn-sm btn-secondary mx-2"><i
+                            class="fas fa-plus"></i></a>
                 </div>
             </div>
             <div class="col-12 ">
@@ -21,9 +22,9 @@
                             <th>Bagni</th>
                             <th>Letti</th>
                             <th>Mq</th>
-                            <th>Latitudine</th>
-                            <th>Longitudine</th>
-                            <th>Img</th>
+                            <th class="d-none d-lg-table-cell">Latitudine</th>
+                            <th class="d-none d-lg-table-cell">Longitudine</th>
+                            <th class="d-none d-lg-table-cell">Img</th>
                             <th>Tools</th>
                         </tr>
                     </thead>
@@ -35,19 +36,25 @@
                                 <td>{{ $apartment->bathrooms }}</td>
                                 <td>{{ $apartment->beds }}</td>
                                 <td>{{ $apartment->square_meters }}</td>
-                                <td>{{ $apartment->lat }}</td>
-                                <td>{{ $apartment->lon }}</td>
-                                <td>{{ $apartment->cover_img }}</td>
+                                <td class="d-none d-lg-table-cell">{{ $apartment->lat }}</td>
+                                <td class="d-none d-lg-table-cell">{{ $apartment->lon }}</td>
+                                <td class="d-none d-lg-table-cell">
+                                    {{ $apartment->cover_img !== 'null' ? 'Immagine presente' : 'Immagine non presente' }}
+                                </td>
                                 <td>
-                                    <div class="d-flex">
+                                    <div class="d-flex flex-column d-md-flex flex-md-row">
                                         <a href="{{ route('user.apartment.show', ['apartment' => $apartment->id]) }}"
-                                            class="btn btn-sm btn-primary me-1"><i
+                                            class="btn btn-sm btn-primary me-1 btn-size d-flex align-items-center justify-content-center"><i
                                                 class="fas fa-eye"></i></a>
 
                                         <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
-                                            class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
+                                            class="btn btn-sm btn-warning me-1 btn-size d-flex align-items-center justify-content-center "><i
+                                                class="fa-solid fa-pencil"></i></a>
                                         {{-- MODALE DELETE --}}
-                                        <button type="button" class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
+                                        <button type="button"
+                                            class="btn_delete btn btn-sm btn-danger btn-size d-flex align-items-center justify-content-center"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </div>
