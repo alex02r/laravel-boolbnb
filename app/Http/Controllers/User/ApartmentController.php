@@ -175,13 +175,6 @@ class ApartmentController extends Controller
         //assegnamo l'id dell'utente loggato allo user_id
         $apartment->user_id = Auth::user()->id;
 
-        //controlliamo la checkbox
-        if ($request->has('show')) {
-            //il checkbox è selezionato e settiamo true il parametro show
-            $apartment->show = true;
-        } else {
-            $apartment->show = false;
-        }
 
         // VERIFICO SE LA RICHIESTA CONTIENE IL CAMPO cover_img
         if ($request->hasFile('cover_img')) {
@@ -196,6 +189,15 @@ class ApartmentController extends Controller
 
         // SALVO I DATI
         $apartment->update($form_data);
+        
+        //controlliamo la checkbox
+        if ($request->has('show')) {
+            //il checkbox è selezionato e settiamo true il parametro show
+            $apartment->show = true;
+        } else {
+            $apartment->show = false;
+        }
+        $apartment->save();
 
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
         return redirect()->route('user.apartment.show', compact('apartment'));
