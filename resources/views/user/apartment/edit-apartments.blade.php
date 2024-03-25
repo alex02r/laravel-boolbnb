@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 d-flex justify-content-center align-items-center">
-            <h1 class="fw-bold color-title">Modifica appartamento {{ $appartment->name }}</h1>  
+            <h1 class="fw-bold color-title">Modifica appartamento: {{ $apartment->title }}</h1>  
         </div>
         <div class="col-10 mt-5">
             {{-- Condizione per ciclare gli errori da mostrare --}}
@@ -41,10 +41,12 @@
                     </div>
 
                     {{-- inserimento dell'indirizzo --}}
-                    <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
+                    <div class="d-none">
+                        <input type="text" name="address" id="address" required> {{-- campo nascosto --}}
+                    </div>
 
                     <label for="search">Inserisci l'indirizzo:</label>
-                    <div id="search">
+                    <div id="search" old-value="{{ old('address') ?? $apartment->address }}">
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
