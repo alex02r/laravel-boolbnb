@@ -22,6 +22,7 @@
                             <th>Bagni</th>
                             <th>Letti</th>
                             <th>Mq</th>
+                            <th class="text-center">Visibilità</th>
                             <th class="d-none d-lg-table-cell">Latitudine</th>
                             <th class="d-none d-lg-table-cell">Longitudine</th>
                             <th class="d-none d-lg-table-cell">Img</th>
@@ -36,6 +37,9 @@
                                 <td>{{ $apartment->bathrooms }}</td>
                                 <td>{{ $apartment->beds }}</td>
                                 <td>{{ $apartment->square_meters }}</td>
+                                <td class="text-center">
+                                    <i class="{{ $apartment->show ? 'fas fa-check text-success' : 'fas fa-x text-danger'}}"></i>
+                                </td>
                                 <td class="d-none d-lg-table-cell">{{ $apartment->lat }}</td>
                                 <td class="d-none d-lg-table-cell">{{ $apartment->lon }}</td>
                                 <td class="d-none d-lg-table-cell">
