@@ -36,7 +36,7 @@
                     <input type="text" class="d-none" name="address" id="address" required> {{-- campo nascosto --}}
 
                     <label for="search">Inserisci l'indirizzo:</label>
-                    <div id="search">
+                    <div id="search" old-value="{{ old('address') }}">
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
