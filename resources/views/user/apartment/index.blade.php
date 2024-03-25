@@ -39,7 +39,7 @@
                                 <td class="d-none d-lg-table-cell">{{ $apartment->lat }}</td>
                                 <td class="d-none d-lg-table-cell">{{ $apartment->lon }}</td>
                                 <td class="d-none d-lg-table-cell">
-                                    {{ $apartment->cover_img !== 'null' ? 'Immagine presente' : 'Immagine non presente' }}
+                                    {{ $apartment->cover_img !== null ? 'Immagine presente' : 'Immagine non presente' }}
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column d-md-flex flex-md-row">
