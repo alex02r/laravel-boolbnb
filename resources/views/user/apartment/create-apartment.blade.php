@@ -86,7 +86,7 @@
                     </div>
                     {{-- seleziona visibilità --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" id="show" name="show">
+                        <input class="form-check-input" type="checkbox" value="0" id="show" name="show">
                         <label class="form-check-label" for="show">
                           Visibile
                         </label>

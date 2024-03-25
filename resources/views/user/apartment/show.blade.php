@@ -6,7 +6,7 @@
         <div class="col-8">
             <div class="card color_card py-3">
                 
-                <img class="card-img-top w-75 align-self-center" src="{{ $apartment->cover_img !== 'null' ? asset('/storage/' . $apartment->cover_img) : '/storage/img/imgnull.jpg' }}" alt="{{ $apartment->title }}">
+                <img class="card-img-top w-75 align-self-center" src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}" alt="{{ $apartment->title }}">
                 <div class="card-body">
                     <h2 class="card-title">{{ $apartment->title }}</h2>
                     <h5 class="text-secondary">{{ $apartment->address }}</h5>
