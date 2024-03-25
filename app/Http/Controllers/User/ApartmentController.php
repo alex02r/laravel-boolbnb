@@ -162,8 +162,8 @@ class ApartmentController extends Controller
             $new_apartment->lat = $results['position']['lat'];
             $new_apartment->lon = $results['position']['lon'];
         } else {
-            $error_message = 'L\'indirizzo che hai inserito non è stato trovato.';
-            return redirect()->route('user.apartment.edit', compact('error_message'));
+            $error_message='L\'indirizzo che hai inserito non è stato trovato.';
+            return redirect()->route('user.apartment.create')->withErrors(['address' => $error_message])->withInput();
         }
         //definiamo lo slug
         $new_apartment->slug = Str::slug($form_data['title'], '-');
