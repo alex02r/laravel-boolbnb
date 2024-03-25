@@ -136,9 +136,6 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
-        //creo nuova classe aparment
-        $new_apartment = new Apartment();
-
         //Variabile che ci permette di eseguire la chiamata API anche lato server
         $httpsAgent = new \GuzzleHttp\Client(['verify' => false]);
         //definiamo l'API KEY per la chiamata API
@@ -156,31 +153,31 @@ class ApartmentController extends Controller
         $results = $results['results'];
         //controlliamo che l'array contenga un risultato e che corrisponda all'indirizzo inserito nella form
         if (!empty($results) && $results['address']['freeformAddress'] == $query) {
-            $new_apartment->fill($form_data);
+            $apartment->fill($form_data);
             //inseriamo le cordinate trovate
-            $new_apartment->lat = $results['position']['lat'];
-            $new_apartment->lon = $results['position']['lon'];
+            $apartment->lat = $results['position']['lat'];
+            $apartment->lon = $results['position']['lon'];
         } else {
             $error_message='L\'indirizzo che hai inserito non è stato trovato.';
             return redirect()->route('user.apartment.edit', ['apartment'=>$apartment])->with('error_address', $error_message);
         } 
 
         //definiamo lo slug
-        $new_apartment->slug = Str::slug($form_data['title'], '-');
+        $apartment->slug = Str::slug($form_data['title'], '-');
         //assegnamo l'id dell'utente loggato allo user_id
-        $new_apartment->user_id = Auth::user()->id;
+        $apartment->user_id = Auth::user()->id;
 
         //controlliamo la checkbox
         if ($request->has('show') == 1) {
             //il checkbox è selezionato e settiamo true il parametro show
-            $new_apartment->show = true;
+            $apartment->show = true;
         } else {
-            $new_apartment->show = false;
+            $apartment->show = false;
         }
 
         // VERIFICO SE LA RICHIESTA CONTIENE IL CAMPO cover_img
         if ($request->hasFile('cover_img')) {
-            // Se il post ha un'immagine
+            // Se l'appartamento ha un'immagine
             if ($apartment->cover_img != null) {
                 Storage::disk('public')->delete($apartment->cover_img);
             }
@@ -190,10 +187,10 @@ class ApartmentController extends Controller
         }
 
         // SALVO I DATI
-        $new_apartment->update($form_data);;
+        $apartment->update($form_data);;
 
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
-        return redirect()->route('user.apartment.index');
+        return redirect()->route('user.apartment.show');
     }
 
     /**
