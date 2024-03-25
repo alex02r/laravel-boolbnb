@@ -25,7 +25,7 @@ class UpdateApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:' . Apartment::class,
+            'title' => 'required',
             'address' => 'required',
             'rooms' => 'required|min:0|max:255|numeric|integer',
             'bathrooms' => 'required|min:0|max:255|numeric|integer',
@@ -40,7 +40,7 @@ class UpdateApartmentRequest extends FormRequest
         return [
             /* messaggi per il titolo*/
             'title.required' => 'Il titolo è obbligatorio',
-            'title.unique' => 'Il titolo che hai inseito è già esistente',
+            'title.unique' => 'Il titolo che hai inserito è già esistente',
 
             /* messaggi per l'address */
             'address.required' => 'L\'indirizzo deve essere obbligatorio',

@@ -136,6 +136,14 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
+        // Creare una query per la modifica di un appartamento con lo stesso titolo
+        $exists = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->get();
+        // Condizione che mi permette di modificare un appartamento mantenendo lo stesso titolo. Ma se cambio titolo e ne inserisco uno già presente in un altro appartamento, mi mostra l'errore impostato.
+        if (count($exists) > 0) {
+            $error_message = 'Il titolo che hai inserito è già esistente.';
+            return redirect()->route('admin.apartment.edit-apartments', compact('apartment', 'error_message'));
+        }
+
         //Variabile che ci permette di eseguire la chiamata API anche lato server
         $httpsAgent = new \GuzzleHttp\Client(['verify' => false]);
         //definiamo l'API KEY per la chiamata API
@@ -190,7 +198,7 @@ class ApartmentController extends Controller
         $apartment->update($form_data);;
 
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
-        return redirect()->route('user.apartment.show');
+        return redirect()->route('user.apartment.show', compact('apartment'));
     }
 
     /**
