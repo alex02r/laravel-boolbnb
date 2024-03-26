@@ -19,4 +19,14 @@ class ApartmentController extends Controller
             'results' => $apartments
         ]);
     }
+    
+    public function search($value){
+        $apartments[] = Apartment::where('address', $value);
+        
+        //invio dei dati come risposa alla chiamata API
+        return response()->json([
+            'success' => true,
+            'apartments' => $apartments
+        ]);
+    }
 }
