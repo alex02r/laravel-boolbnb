@@ -17,7 +17,7 @@
                     {{-- inserimento del titolo --}}
                     <h2>Inserisci un nuovo apartment: </h2>
                     <div class="mb-3">
-                        <label for="title" class="form-label">Inserisci il titolo:</label>
+                        <label for="title" class="form-label">Inserisci il titolo* :</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" required>
                         @error('title')
                         <div class="text-danger">{{ $message }}</div>
@@ -38,7 +38,7 @@
                         <input type="text" name="address" id="address"> {{-- campo nascosto --}}
                     </div>
                     
-                    <label for="search">Inserisci l'indirizzo:</label>
+                    <label for="search">Inserisci l'indirizzo* :</label>
                     <div id="search" old-value="{{ old('address') }}">
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
@@ -53,7 +53,7 @@
                     <div class="d-flex gap-3 my-3">
                         {{-- square meters --}}
                         <div class="">
-                            <label for="square_meters" class="form-label">Metri quadrati</label>
+                            <label for="square_meters" class="form-label">Metri quadrati*</label>
                             <input type="number" min="10" class="form-control form-control-sm" name="square_meters" id="square_meters" value="{{ old('square_meters') }}" required>                            
                             @error('square_meters')
                                 <div class="text-danger">{{ $message }}</div>
@@ -61,7 +61,7 @@
                         </div>
                         {{-- rooms --}}
                         <div class="">
-                            <label for="rooms" class="form-label">Stanze</label>
+                            <label for="rooms" class="form-label">Stanze*</label>
                             <input type="number" min="0" max="255" class="form-control form-control-sm" name="rooms" id="rooms" value="{{ old('rooms') }}" required>                            
                             @error('rooms')
                                 <div class="text-danger">{{ $message }}</div>
@@ -69,7 +69,7 @@
                         </div>
                         {{-- bathrooms --}}
                         <div class="">
-                            <label for="bathrooms" class="form-label">Bagni</label>
+                            <label for="bathrooms" class="form-label">Bagni*</label>
                             <input type="number" min="0" max="255" class="form-control form-control-sm" name="bathrooms" id="bathrooms" value="{{ old('bathrooms') }}" required>                            
                             @error('bathrooms')
                                 <div class="text-danger">{{ $message }}</div>
@@ -77,7 +77,7 @@
                         </div>
                         {{-- beds --}}
                         <div class="">
-                            <label for="beds" class="form-label">Letti</label>
+                            <label for="beds" class="form-label">Letti*</label>
                             <input type="number" min="0" max="255" class="form-control form-control-sm" name="beds" id="beds" value="{{ old('beds') }}" required>                            
                             @error('beds')
                                 <div class="text-danger">{{ $message }}</div>
@@ -88,8 +88,11 @@
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" value="0" id="show" name="show">
                         <label class="form-check-label" for="show">
-                          Visibile
+                            Visibile
                         </label>
+                    </div>
+                    <div class="mb-4 row">
+                        <sub class="">Tutti i campi con (*) sono obbligatori.</sub>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-success" id="btnAdd">Aggiungi</button>
