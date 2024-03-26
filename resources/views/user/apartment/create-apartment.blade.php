@@ -17,7 +17,7 @@
                     {{-- inserimento del titolo --}}
                     <h2>Inserisci un nuovo apartment: </h2>
                     <div class="mb-3">
-                        <label for="title" class="form-label">Inserisci il titolo*:</label>
+                        <label for="title" class="form-label">Inserisci il titolo* :</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" required>
                         @error('title')
                         <div class="text-danger">{{ $message }}</div>
@@ -38,7 +38,7 @@
                         <input type="text" name="address" id="address"> {{-- campo nascosto --}}
                     </div>
                     
-                    <label for="search">Inserisci l'indirizzo*:</label>
+                    <label for="search">Inserisci l'indirizzo* :</label>
                     <div id="search" old-value="{{ old('address') }}">
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
