@@ -113,7 +113,7 @@
                                 <a href="{{ route('user.apartment.index') }}"
                                     class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
                                     <i class="fa-solid fa-house fa-md fa-fw "></i>
-                                    <span class="d-none d-md-inline-block"> Apartment </span>
+                                    <span class="d-none d-md-inline-block"> Appartamenti </span>
                                 </a>
                             </li>
                         </ul>
