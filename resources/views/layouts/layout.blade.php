@@ -66,7 +66,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -79,11 +79,11 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item"
                                         href="{{ route('user.dashboard') }}">{{ __('Dashboard') }}</a>
-                                    <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profilo') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Esci') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -113,7 +113,7 @@
                                 <a href="{{ route('user.apartment.index') }}"
                                     class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
                                     <i class="fa-solid fa-house fa-md fa-fw "></i>
-                                    <span class="d-none d-md-inline-block"> Apartment </span>
+                                    <span class="d-none d-md-inline-block"> Appartamenti </span>
                                 </a>
                             </li>
                         </ul>

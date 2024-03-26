@@ -7,8 +7,8 @@
                 <h3 class="text-secondary text-uppercase">
                     LISTA APPARTAMENTI
                 </h3>
-                <div class="d-flex">
-                    <h5 class="text-secondary text-uppercase">Aggiungi appartamento</h5>
+                <div class="d-flex pb-4">
+                    <h5 class="text-secondary">Aggiungi appartamento</h5>
                     <a href="{{ route('user.apartment.create') }}" class="btn btn-sm btn-secondary mx-2"><i
                             class="fas fa-plus"></i></a>
                 </div>
