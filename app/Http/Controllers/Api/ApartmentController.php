@@ -24,7 +24,34 @@ class ApartmentController extends Controller
     
     public function search(Request $request){
         
-        
+        $query = [];
+
+        //controlliamo sei nei parametri della richiesta API sia inserito l'address
+        if ($request->has('address')) {
+            //recuperiamo il valore dell'indizirro richiesto
+            $address = $request->input('address');
+            if (!empty($address)) {
+                $coordinates = $this->getCoordinates($address);
+                $query= Apartment::whereRaw('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lon) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) < ?', [
+                    $coordinates['lat'],
+                    $coordinates['lon'],
+                    $coordinates['lat'],
+                    $request->input('distance', 100) / 1000,
+                ]);
+            }
+        }
+        $apartments = $query->get();
+        if(empty($query)){
+            return response()->json([
+                'success' => false,
+                'error' => 'Array vuoto'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'apartments' => $apartments
+        ]);
     }
 
     //funzione che ci restituisce latitudine e longitudine di un indirizzo
