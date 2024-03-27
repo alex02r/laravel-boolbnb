@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\ApartmentController;
 
 
 Route::get('/apartment', [ApartmentController::class, 'index']);
-Route::get('/apartments/{address}', [ApartmentController::class, 'search']);
+Route::get('/search', [ApartmentController::class, 'search']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
