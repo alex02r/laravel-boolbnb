@@ -111,6 +111,10 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        if ($apartment->user_id != Auth::id()) {
+            return view('errors.not_authorized');
+        }
+
         return view('user.apartment.show', compact('apartment'));
     }
 
@@ -122,6 +126,10 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+        if ($apartment->user_id != Auth::id()) {
+            return view('errors.not_authorized');
+        }
+
         return view('user.apartment.edit-apartments', compact('apartment'));
     }
 
