@@ -20,14 +20,17 @@
                         </thead>
                         <tbody>
                             @foreach ($apartments as $apartment)
-                            @if ($sponsor->id == $aparments->sponsor->sponsor_id)
-                                <tr>
-                                    <th>{{ $aparments->title }}</th>
-                                    <th>{{ $aparments->sponsor->start_date }}</th>
-                                    <th>{{ $aparments->sponsor->ending_date }}</th>
-                                    <th>finito</th>
-                                </tr>
-                            @endif    
+                                @foreach ($apartment->sponsors as $item)
+
+                                @if ($sponsor->id == $item->id)
+                                    <tr>
+                                        <th>{{ $apartment->title }}</th>
+                                        <th>{{ $item->pivot->start_date }}</th>
+                                        <th>{{ $item->pivot->ending_date }}</th>
+                                        <th>finito</th>
+                                    </tr>
+                                @endif
+                                @endforeach
                             @endforeach
                         </tbody>
                     </table>
