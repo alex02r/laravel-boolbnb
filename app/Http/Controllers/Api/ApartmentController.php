@@ -68,6 +68,15 @@ class ApartmentController extends Controller
             }
         }
 
+        //filtraggio per i servizi
+        if ($request->has('services')) {
+            $services = $request->input('services');
+            if (!empty($services)) {
+                $query->whereHas('services', function ($q) use ($services) {
+                    $q->whereIn('id', $services);
+                });
+            }
+        }
 
         $apartments = $query->get();
         if(empty($query)){
