@@ -43,7 +43,11 @@ class ApartmentController extends Controller
 
         //filtraggio per stanze
         if ($request->has('rooms')) {
-            
+            $rooms = $request->input('rooms');
+            if (!empty($rooms)) {
+                //seleziono gli apartments dove il numero di stanze è uguale o maggiore
+                $query->where('rooms','>=', $rooms );
+            }
         }
 
 
