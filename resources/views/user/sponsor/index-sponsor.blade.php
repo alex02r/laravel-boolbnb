@@ -15,17 +15,19 @@
                                 <th>Nome appartamneto</th>
                                 <th>Datta inizio</th>
                                 <th>Data fine</th>
-                                <th>status</th>
+                                <th>stato</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($apartments as $apartment)    
-                            <tr>
-                                <th>Prova 1 {{ $apartment }}</th>
-                                <th>21/01/2023 23:10:26</th>
-                                <th>22/01/2023 23:10:26</th>
-                                <th>finito</th>
-                            </tr>
+                            @foreach ($apartments as $apartment)
+                            @if ($sponsor->id == $aparments->sponsor->sponsor_id)
+                                <tr>
+                                    <th>{{ $aparments->title }}</th>
+                                    <th>{{ $aparments->sponsor->start_date }}</th>
+                                    <th>{{ $aparments->sponsor->ending_date }}</th>
+                                    <th>finito</th>
+                                </tr>
+                            @endif    
                             @endforeach
                         </tbody>
                     </table>
