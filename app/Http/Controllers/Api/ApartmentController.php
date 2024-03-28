@@ -36,7 +36,7 @@ class ApartmentController extends Controller
                     $coordinates['lat'],
                     $coordinates['lon'],
                     $coordinates['lat'],
-                    $request->input('distance', 100) / 1000,
+                    $request->input('distance', 100),
                 ]);
             }
         }
