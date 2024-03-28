@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 
 use App\Models\Apartment;
+use App\Models\Service;
 use App\Models\User;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
@@ -35,7 +36,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('user.apartment.create-apartment');
+        $services = Service::all();
+        return view('user.apartment.create-apartment',compact('services'));
     }
 
     /**
@@ -99,6 +101,10 @@ class ApartmentController extends Controller
         //Salviamo l'appartamento nel db
         $new_apartment->save();
 
+        if($request->has('services')){
+            $new_apartment->services()->attach($form_data['services']);
+        }
+
 
         return redirect()->route('user.apartment.index');
     }
@@ -122,7 +128,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        return view('user.apartment.edit-apartments', compact('apartment'));
+        $services = Service::all();
+        return view('user.apartment.edit-apartments', compact('apartment','services'));
     }
 
     /**
@@ -190,7 +197,9 @@ class ApartmentController extends Controller
             $apartment->show = false;
         }
         $apartment->save();
-
+        if($request->has('services')){
+            $apartment->services()->sync($form_data['services']);
+        }
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
         return redirect()->route('user.apartment.show', compact('apartment'));
     }
