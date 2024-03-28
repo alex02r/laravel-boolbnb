@@ -40,6 +40,13 @@ class ApartmentController extends Controller
                 ]);
             }
         }
+
+        //filtraggio per stanze
+        if ($request->has('rooms')) {
+            
+        }
+
+
         $apartments = $query->get();
         if(empty($query)){
             return response()->json([
