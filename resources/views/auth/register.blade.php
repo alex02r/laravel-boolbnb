@@ -66,13 +66,13 @@
                                         name="date_of_birth" value="{{ old('date_of_birth') }}" required
                                         autocomplete="date_of_birth" autofocus>
 
-                                    {{--
+                                    
                                 @error('date_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
-                                --}}
+                               
 
                                     <span id="dobError" class="invalid-feedback" role="alert" style="display: none">
                                         Devi avere almeno 18 anni per registrarti.
@@ -85,7 +85,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password"
+                                    <input onchange="checkPw()" id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
 
@@ -94,6 +94,10 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+
+                                    <span id="pwError" class="invalid-feedback" role="alert" style="display: none">
+                                        Le password inserite non coincidono.
+                                    </span>
                                 </div>
                             </div>
 
@@ -101,13 +105,13 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma la Password') }}*</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input onchange="checkPw()" id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
 
                         <div class="mb-4 row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-3">
                                 <sub class="">Tutti i campi con (*) sono obbligatori.</sub>
                             </div>
                             
@@ -142,5 +146,22 @@
                 document.getElementById('dobError').style.display = 'block';
             }
         }
+
+        function checkPw() {
+            let password = document.getElementById('password').value;
+            let confirm_password = document.getElementById('password-confirm').value;
+
+            if (password === confirm_password){
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('pwError').style.display = 'none';
+            }
+            else{
+                console.log('Sono diverse')
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('pwError').style.display = 'block';
+            }
+        }
     </script>
 @endsection
+
+Decodifica
