@@ -29,7 +29,7 @@
             <div class="col-12 text-center">
                 <div class="content">
                     <h1>404</h1>
-                    <p>Oops! Hai fatto il furbo e stai cercando di accedere ad un contenuto non autorizzato.</p>
+                    <p>Oops! Hai fatto il furbo e stai cercando di accedere ad un contenuto <strong>non autorizzato</strong>.</p>
                     <p>Ritorna alla tua <a href="{{ route('user.dashboard') }}">dashboard personale</a>.</p>
                 </div>
             </div>
