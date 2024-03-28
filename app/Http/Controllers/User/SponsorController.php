@@ -6,6 +6,7 @@ use App\Models\Sponsor;
 use App\Http\Requests\StoreSponsorRequest;
 use App\Http\Requests\UpdateSponsorRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 
 class SponsorController extends Controller
 {
@@ -16,7 +17,9 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        //
+        $sponsors = Sponsor::all();
+        $apartments = Apartment::where('user_id', auth()->user()->id)->whereHas('sponsors')->get();
+        return view('user.sponsor.index-sponsor', compact('sponsors','apartments'));
     }
 
     /**
