@@ -4,6 +4,7 @@ use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ApartmentController;
+use App\Http\Controllers\User\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,10 @@ Route::middleware(['auth','verified'])
     ->group(function(){
         // ROTTA PER LA DASHBOARD IN CUI ATTERRA L'UTENTE DOPO AVER EFF. LOGIN
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        // Rotta per gli appartamenti
         Route::resource('/apartment', ApartmentController::class);
+        // Rotta per i messaggi
+        Route::resource('/messages', MessageController::class);
 });
 
 // ROTTA FALLBACK PER IL NOT FOUND
