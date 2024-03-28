@@ -4,6 +4,7 @@ use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ApartmentController;
+use App\Http\Controllers\User\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware(['auth','verified'])
         // ROTTA PER LA DASHBOARD IN CUI ATTERRA L'UTENTE DOPO AVER EFF. LOGIN
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/apartment', ApartmentController::class);
+        Route::resource('/sponsor', SponsorController::class);
 });
 
 // ROTTA FALLBACK PER IL NOT FOUND
