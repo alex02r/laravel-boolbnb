@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('sponsor_id');
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->cascadeOnDelete('set null');
             
+            $table->date('start_date');
             $table->date('ending_date');
-            $table->timestamps();
         });
     }
 
