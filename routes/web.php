@@ -33,6 +33,16 @@ Route::middleware(['auth','verified'])
         Route::resource('/apartment', ApartmentController::class);
 });
 
+// ROTTA FALLBACK PER IL NOT FOUND
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});
+
+// ROTTA PER LA PAGINA NOT AUTHORIZED
+Route::get('*/not-authorized', function () {
+    return view('not_authorized');
+})->name('not.authorized');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
