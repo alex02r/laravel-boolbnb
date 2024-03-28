@@ -18,7 +18,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        
+        $apartments = Apartment::all();
+        $messages = Message::all();
+        return view('user.message.index', compact('apartments', 'messages'));
     }
 
     /**

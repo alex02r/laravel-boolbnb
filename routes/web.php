@@ -34,7 +34,7 @@ Route::middleware(['auth','verified'])
         // Rotta per gli appartamenti
         Route::resource('/apartment', ApartmentController::class);
         // Rotta per i messaggi
-        Route::resource('/messages', MessageController::class);
+        Route::resource('/message', MessageController::class);
 });
 
 // ROTTA FALLBACK PER IL NOT FOUND
