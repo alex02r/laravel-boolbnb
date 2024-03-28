@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->cascadeOnDelete('set null');
             
             $table->date('ending_date');
+            $table->timestamps();
         });
     }
 
