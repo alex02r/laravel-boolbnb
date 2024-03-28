@@ -50,6 +50,15 @@ class ApartmentController extends Controller
             }
         }
 
+        //filtraggio per i letti
+        if ($request->has('beds')) {
+            $beds = $request->input('beds');
+            if (!empty($beds)) {
+                //seleziono gli apartments dove il numero di stanze è uguale o maggiore
+                $query->where('beds','>=', $beds );
+            }
+        }
+
 
         $apartments = $query->get();
         if(empty($query)){
