@@ -14,6 +14,22 @@ class SponsorSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $sponsors = [
+            [
+                'title' => 'Base',
+                'duration' => 0,
+                'price' => 2.99 
+            ],
+            [
+                'title' => 'Media',
+                'duration' => 0,
+                'price' => 5.99 
+            ],
+            [
+                'title' => 'Pro',
+                'duration' => 0,
+                'price' => 9.99 
+            ]
+        ];
     }
 }
