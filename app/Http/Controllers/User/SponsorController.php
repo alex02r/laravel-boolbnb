@@ -18,7 +18,7 @@ class SponsorController extends Controller
     public function index()
     {
         $sponsors = Sponsor::all();
-        $apartments = Apartment::where('user_id', auth()->user()->id)->whereHas('sponsors')->get();
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
         return view('user.sponsor.index-sponsor', compact('sponsors','apartments'));
     }
 
