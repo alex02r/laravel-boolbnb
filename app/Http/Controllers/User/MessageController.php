@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Apartment;
 use App\Models\Message;
-
+use Illuminate\Support\Facades\DB;
 class MessageController extends Controller
 {
     /**
@@ -16,11 +16,22 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Apartment $apartment, User $user)
     {
-        $apartments = Apartment::all();
-        $messages = Message::orderByDesc('created_at')->get();
-        return view('user.message.index', compact('apartments', 'messages'));
+        $user = Auth::user();
+
+        $messages = DB::table('messages')
+        ->join('apartments', 'apartments.id', '=', 'messages.apartment_id')
+        ->join('users', 'users.id', '=', 'apartments.user_id')
+        ->select('messages.*', 'apartments.title', 'apartments.slug')
+        ->where('users.id', '=', $user->id)
+        ->get();
+
+        $apartment_id = $apartment->title;
+
+        // $apartments = Apartment::all();
+        // $messages = Message::orderByDesc('created_at')->get();
+        return view('user.message.index', compact('messages'));
     }
 
     /**
@@ -54,10 +65,9 @@ class MessageController extends Controller
     {
         $viewed_message = Message::find($message->id);
         $viewed_message->viewed = true;
-        $apartment_id = Apartment::find($apartment->id);
         $viewed_message->save();
 
-        return view('user.message.show', compact('message', 'apartment'));
+        return view('user.message.show', compact('message'));
     }
 
     /**
@@ -93,6 +103,6 @@ class MessageController extends Controller
     {
         $message->delete();
 
-        return redirect()->route('user.message.index')->with('message', 'Message Deleted');
+        return redirect()->route('user.message.index');
     }
 }

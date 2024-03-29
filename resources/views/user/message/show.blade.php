@@ -7,10 +7,9 @@
                 <div class="card color_card py-3">
                     <div class="card-body">
                         <h2 class="card-title mb-3">Messaggio da {{ $message->user_mail }}</h2>
-                        <h5>Per appartamento: {{ $message->apartment_id }}</h5>
-                        <a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}"> <img class="card-img-top w-25 align-self-center rounded-2 mb-4" src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}"
-                        alt="{{ $apartment->title }}"> </a>
+                        <a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}"> <h5>Per appartamento: {{ $message->apartment_id }}</h5> </a>
                         <p> <strong>Contenuto del messaggio:</strong> <span class="text-secondary">{{ $message->message }}</span></p>
+                        <p> <strong>Messaggio inviato il:</strong> <span class="text-secondary">{{ $message->created_at }}</span></p>
                         {{-- MODALE DELETE --}}
                         <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
                             data-bs-target="#modal_message_delete-{{ $message->id }}">
