@@ -20,29 +20,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($messages as $message)
-                            <tr>
-                                <td>{{ $message->user_mail }}</td>
-                                <td>{{ $message->apartment_id }}</td>
-                                <td class="d-none d-lg-table-cell">{{ $message->message }}</td>
-                                <td class="text-center">
-                                    <i
-                                        class="{{ $message->viewed ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column d-md-flex flex-md-row gap-2">
-                                        <a href="{{ route('user.message.show', ['message' => $message->id]) }}"
-                                            class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
-                                        {{-- MODALE DELETE --}}
-                                        {{-- <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modal_message_delete-{{ $message->id }}">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button> --}}
-                                    </div>
-                                </td>
-                            </tr>
-                            {{-- POP-UP MODALE --}}
-                            {{-- @include('user.message.modal_delete') --}}
+                         @foreach($apartments as $apartment)
+                            @foreach ($apartment->messages as $message)
+                                
+                                    <tr>
+                                        <td>{{ $message->user_mail }}</td>
+                                        <td>{{ $apartment->title }}</td>
+                                        <td class="d-none d-lg-table-cell">{{ $message->message }}</td>
+                                        <td class="text-center">
+                                            <i class="{{ $message->viewed ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column d-md-flex flex-md-row gap-2">
+                                                <a href="{{ route('user.message.show', ['message' => $message->id]) }}"
+                                                    class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                {{-- MODALE DELETE --}}
+                                                {{-- <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modal_message_delete-{{ $message->id }}">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button> --}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{-- POP-UP MODALE --}}
+                                    {{-- @include('user.message.modal_delete') --}}
+                                
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>

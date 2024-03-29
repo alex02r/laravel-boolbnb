@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\MessageController;
 Route::get('/apartment', [ApartmentController::class, 'index']);
 Route::get('/search', [ApartmentController::class, 'search']);
 
-Route::post('/messages', [MessageController::class, 'store']);
+Route::post('/message', [MessageController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
