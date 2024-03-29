@@ -11,10 +11,11 @@
                         <a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}"> <img class="card-img-top w-25 align-self-center rounded-2 mb-4" src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}"
                         alt="{{ $apartment->title }}"> </a>
                         <p> <strong>Contenuto del messaggio:</strong> <span class="text-secondary">{{ $message->message }}</span></p>
-                            {{-- <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
-                                data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
-                                ELIMINA
-                            </button> --}}
+                        {{-- MODALE DELETE --}}
+                        <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modal_message_delete-{{ $message->id }}">
+                            <i class="fa-solid fa-trash"></i> Cancella messaggio
+                        </button>
                     </div>
                 </div>
                 <div class="col-10 text-center mt-5">
@@ -23,5 +24,6 @@
             </div>
         </div>
     </div>
-    {{-- @include('user.apartment.modal_delete') --}}
+    {{-- POP-UP MODALE --}}
+    @include('user.message.modal_delete')
 @endsection

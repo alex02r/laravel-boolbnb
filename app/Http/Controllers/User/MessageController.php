@@ -19,7 +19,7 @@ class MessageController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
-        $messages = Message::all();
+        $messages = Message::orderByDesc('created_at')->get();
         return view('user.message.index', compact('apartments', 'messages'));
     }
 
@@ -89,8 +89,10 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Message $message)
     {
-        //
+        $message->delete();
+
+        return redirect()->route('user.message.index')->with('message', 'Message Deleted');
     }
 }

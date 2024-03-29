@@ -35,16 +35,16 @@
                                                 <a href="{{ route('user.message.show', ['message' => $message->id]) }}"
                                                     class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
                                                 {{-- MODALE DELETE --}}
-                                                {{-- <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modal_message_delete-{{ $message->id }}">
                                                     <i class="fa-solid fa-trash"></i>
-                                                </button> --}}
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
                                     {{-- POP-UP MODALE --}}
-                                    {{-- @include('user.message.modal_delete') --}}
-                                
+                                    @include('user.message.modal_delete')
+
                             @endforeach
                         @endforeach
                     </tbody>
