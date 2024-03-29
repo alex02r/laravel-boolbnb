@@ -19,7 +19,12 @@ class SponsorController extends Controller
     {
         $sponsors = Sponsor::all();
         $apartments = Apartment::where('user_id', auth()->user()->id)->get();
-        return view('user.sponsor.index-sponsor', compact('sponsors','apartments'));
+        if (count($apartments) > 0) {
+            
+            return view('user.sponsor.index-sponsor', compact('sponsors','apartments'));
+        }else {
+            return view('errors.not_authorized');
+        }
     }
 
     /**

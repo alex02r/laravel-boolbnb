@@ -116,6 +116,8 @@
                                     <span class="d-none d-md-inline-block"> Appartamenti </span>
                                 </a>
                             </li>
+                            @if (count(Auth::user()->apartments) > 0)
+                                
                             <li class="nav-item">
                                 <a href="{{ route('user.sponsor.index') }}"
                                     class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.sponsor.index' ? 'bg-secondary' : '' }}">
@@ -123,6 +125,7 @@
                                     <span class="d-none d-md-inline-block"> Sponsor </span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                 </nav>
                 <main class="col-11 ms-sm-auto col-md-10 px-md-4 pt-3 color_main d-flex justify-content-center p-0">
