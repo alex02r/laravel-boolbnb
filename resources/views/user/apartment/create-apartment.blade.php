@@ -15,7 +15,7 @@
                 <form action="{{ route('user.apartment.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{-- inserimento del titolo --}}
-                    <h2>Inserisci un nuovo apartment: </h2>
+                    <h2>Inserisci un nuovo appartmento: </h2>
                     <div class="mb-3">
                         <label for="title" class="form-label">Inserisci il titolo* :</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}"
@@ -104,7 +104,7 @@
                     </div>
                     {{-- seleziona visibilità --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="0" id="show" name="show">
+                        <input class="form-check-input" type="checkbox" value="0" id="show" name="show" checked>
                         <label class="form-check-label" for="show">
                             Visibile
                         </label>
