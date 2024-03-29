@@ -6,21 +6,19 @@
             <div class="col-8">
                 <div class="card color_card py-3">
                     <div class="card-body">
-                        @foreach($apartments as $apartment)
-                            @foreach ($apartment->messages as $message)
-                                <img class="card-img-top w-75 align-self-center"
-                                src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}"
-                                alt="{{ $apartment->title }}">
-                                <h2 class="card-title">Messaggio da {{ $message->user_mail }}</h2>
-                                <h5 class="text-secondary">{{ $message->message }}</h5>
-                                    {{-- <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
-                                        data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
-                                        ELIMINA
-                                    </button> --}}
-                                </div>
-                            @endforeach
-                        @endforeach
+                        <h2 class="card-title mb-3">Messaggio da {{ $message->user_mail }}</h2>
+                        <h5>Per appartamento: {{ $message->apartment_id }}</h5>
+                        <a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}"> <img class="card-img-top w-25 align-self-center rounded-2 mb-4" src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}"
+                        alt="{{ $apartment->title }}"> </a>
+                        <p> <strong>Contenuto del messaggio:</strong> <span class="text-secondary">{{ $message->message }}</span></p>
+                            {{-- <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
+                                data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
+                                ELIMINA
+                            </button> --}}
                     </div>
+                </div>
+                <div class="col-10 text-center mt-5">
+                    <a href="/user/message" > <button class="btn btn-secondary">Torna indietro</button></a>
                 </div>
             </div>
         </div>

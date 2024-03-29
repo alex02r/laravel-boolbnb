@@ -50,14 +50,14 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show(Message $message, Apartment $apartment)
     {
-        $apartments = Apartment::all();
         $viewed_message = Message::find($message->id);
         $viewed_message->viewed = true;
+        $apartment_id = Apartment::find($apartment->id);
         $viewed_message->save();
 
-        return view('user.message.show', compact('message', 'apartments'));
+        return view('user.message.show', compact('message', 'apartment'));
     }
 
     /**

@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $message->user_mail }}</td>
                                         <td>{{ $apartment->title }}</td>
-                                        <td class="d-none d-lg-table-cell">{{ $message->message }}</td>
+                                        <td class="d-none d-lg-table-cell">{{ Str::limit($message->message, 15, '...') }}</td>
                                         <td class="text-center">
                                             <i class="{{ $message->viewed ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
                                         </td>
