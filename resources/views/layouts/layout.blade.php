@@ -118,13 +118,21 @@
                             </li>
                             @if (count(Auth::user()->apartments) > 0)
                                 
-                            <li class="nav-item">
-                                <a href="{{ route('user.sponsor.index') }}"
-                                    class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.sponsor.index' ? 'bg-secondary' : '' }}">
-                                    <i class="fas fa-hand-holding-dollar"></i>
-                                    <span class="d-none d-md-inline-block"> Sponsor </span>
-                                </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('user.sponsor.index') }}"
+                                        class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.sponsor.index' ? 'bg-secondary' : '' }}">
+                                        <i class="fas fa-hand-holding-dollar"></i>
+                                        <span class="d-none d-md-inline-block"> Sponsor </span>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a href="{{ route('user.message.index') }}"
+                                        class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.message.index' ? 'bg-secondary' : '' }}">
+                                        <i class="fa-solid fa-envelope fa-md fa-fw "></i>
+                                        <span class="d-none d-md-inline-block"> Messaggi </span>
+                                    </a>
+                                </li>
                             @endif
                         </ul>
                 </nav>
