@@ -27,10 +27,6 @@ class MessageController extends Controller
         ->where('users.id', '=', $user->id)
         ->get();
 
-        $apartment_id = $apartment->title;
-
-        // $apartments = Apartment::all();
-        // $messages = Message::orderByDesc('created_at')->get();
         return view('user.message.index', compact('messages'));
     }
 

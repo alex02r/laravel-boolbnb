@@ -116,13 +116,19 @@
                                     <span class="d-none d-md-inline-block"> Appartamenti </span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('user.message.index') }}"
-                                    class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.message.index' ? 'bg-secondary' : '' }}">
-                                    <i class="fa-solid fa-envelope fa-md fa-fw "></i>
-                                    <span class="d-none d-md-inline-block"> Messaggi </span>
-                                </a>
-                            </li>
+                            @if (count(Auth::user()->apartments) > 0)
+                                <li class="nav-item">
+                                    <a href="{{ route('user.message.index') }}"
+                                        class="py-2 px-0 nav-link text-white text-center text-lg-start ps-lg-4 {{ Route::currentRouteName() == 'user.message.index' ? 'bg-secondary' : '' }}">
+                                        <i class="fa-solid fa-envelope fa-md fa-fw "></i>
+                                        <span class="d-none d-md-inline-block"> Messaggi </span>
+                                    </a>
+                                </li>       
+                            @else
+                                <li>
+                                    
+                                </li>
+                            @endif
                         </ul>
                 </nav>
                 <main class="col-11 ms-sm-auto col-md-10 px-md-4 pt-3 color_main d-flex justify-content-center p-0">
