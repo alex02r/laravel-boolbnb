@@ -24,6 +24,7 @@
                             <th class="d-none d-lg-table-cell">Letti</th>
                             <th>Mq</th>
                             <th class="text-center">Visibilità</th>
+                            <th>Sponsor</th>
                             <th>Strumenti</th>
                         </tr>
                     </thead>
@@ -39,6 +40,10 @@
                                 <td class="text-center">
                                     <i
                                         class="{{ $apartment->show ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
+                                </td>
+                                <td>
+                                    {{-- se l'apartment non ha sponsor visualizziamo il link per la sponsorizzazione --}}
+                                    <a href="{{ route('user.sponsor.index') }}">Sponsorizza</a>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column d-md-flex flex-md-row gap-2">
