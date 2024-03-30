@@ -33,6 +33,7 @@ Route::middleware(['auth','verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/apartment', ApartmentController::class);
         Route::resource('/sponsor', SponsorController::class);
+        Route::get('/createSponsor/{apartment}/{sponsor}', [SponsorController::class, 'createSponsor'])->name('createSponsor');
         Route::get('/payments/{apartment}/{sponsor}', [SponsorController::class, 'payment'])->name('payment');
 });
 
