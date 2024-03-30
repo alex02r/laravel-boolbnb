@@ -27,7 +27,14 @@ class MessageController extends Controller
         ->where('users.id', '=', $user->id)
         ->get();
 
-        return view('user.message.index', compact('messages'));
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
+
+        if(count($apartments) > 0){
+            return view('user.message.index', compact('messages', 'apartments'));
+        }
+        else{
+            return view('errors.not_authorized');
+        } 
     }
 
     /**
