@@ -34,7 +34,7 @@ Route::middleware(['auth','verified'])
         Route::resource('/apartment', ApartmentController::class);
         Route::resource('/sponsor', SponsorController::class);
         Route::get('/createSponsor/{apartment}/{sponsor}', [SponsorController::class, 'createSponsor'])->name('createSponsor');
-        Route::get('/payments/{apartment}/{sponsor}', [SponsorController::class, 'payment'])->name('payment');
+        Route::post('/payments/{apartment}/{sponsor}', [SponsorController::class, 'payment'])->name('payment');
 });
 
 // ROTTA FALLBACK PER IL NOT FOUND
