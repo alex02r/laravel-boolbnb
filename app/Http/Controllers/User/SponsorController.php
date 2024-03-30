@@ -92,4 +92,7 @@ class SponsorController extends Controller
     {
         //
     }
+    public function payment(Apartment $apartment, Sponsor $sponsor){
+
+    }
 }
