@@ -32,6 +32,6 @@ class Apartment extends Model
     }
 
     public function sponsors(){
-        return $this->belongsToMany(Sponsor::class)->withPivot('start_date', 'ending_date');;
+        return $this->belongsToMany(Sponsor::class)->withPivot('start_date', 'end_date');;
     }
 }
