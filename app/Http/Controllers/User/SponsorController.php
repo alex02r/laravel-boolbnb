@@ -92,7 +92,22 @@ class SponsorController extends Controller
     {
         //
     }
-    public function payment(Apartment $apartment, Sponsor $sponsor){
+    public function createSponsor(Apartment $apartment, Sponsor $sponsor){
 
+        if ($apartment->user_id == auth()->user()->id) {
+            return view('user.sponsor.sponsor-apartment', compact('apartment', 'sponsor'));
+        }else {
+            return view('errors.not_authorized');
+        }
+    }
+    public function payment( Apartment $apartment, Sponsor $sponsor){
+        $apartment = $apartment->where('user_id', auth()->user()->id)->get();
+        if (count($apartment) > 0) {
+           // $apartment->sponsors()->attach($sponsor, ['start_date' => 100, 'end_date' => 49.99]);
+        }else {
+            return view('errors.not_authorized');
+        }
+
+        return view('user.sponsor.sponsor-apartment', compact('apartment'));
     }
 }
