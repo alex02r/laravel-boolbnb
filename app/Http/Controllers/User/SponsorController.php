@@ -114,9 +114,10 @@ class SponsorController extends Controller
                     //controlliamo se la sponsor esistente è uguale a quella che stiamo creando
                     // e che la data di fine ancora deve terminare
                     $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
-                    if ( $item->id == $sponsor->id && $start_date < $item->pivot->end_date ) {
-                        $error_message = 'É già presente una sponsorizzazione '.$sponsor->title.' in data '.$item->pivot->end_date.' per l\'appartamento '.$apartment->title;
-                        return redirect()->route('user.sponsor.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
+                    if ( $start_date < $item->pivot->end_date ) {
+                        $error_message = 'É già presente una sponsorizzazione che finisce in data: '.$item->pivot->end_date.' per l\'appartamento '.$apartment->title;
+                        return redirect()->route('user.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
+                        
                     }
                 }
             }
