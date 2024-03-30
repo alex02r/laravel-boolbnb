@@ -93,7 +93,7 @@ class ApartmentController extends Controller
     }
 
     public function singleApartment($slug, $id){
-        $apartment = Apartment::where('id', $id)->where('slug', $slug)->get();
+        $apartment = Apartment::with('services')->where('id', $id)->where('slug', $slug)->get();
     
         if($apartment->isEmpty()){
             return response()->json([
