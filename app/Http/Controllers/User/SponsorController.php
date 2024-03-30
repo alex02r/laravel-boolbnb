@@ -106,6 +106,22 @@ class SponsorController extends Controller
         $form_data = $request->all();
     
         if ($apartment->user_id == auth()->user()->id) {
+
+            //controlliamo se esistono sponsorizzazioni
+            if (!empty($apartment->sponsors)) {
+                //cicliamo tutte le sponsorizzazioni
+                foreach ($apartment->sponsors as $item) {
+                    //controlliamo se la sponsor esistente è uguale a quella che stiamo creando
+                    // e che la data di fine ancora deve terminare
+                    $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
+                    if ( $item->id == $sponsor->id && $start_date < $item->pivot->end_date ) {
+                        $error_message = 'É già presente una sponsorizzazione '.$sponsor->title.' in data '.$item->pivot->end_date.' per l\'appartamento '.$apartment->title;
+                        return redirect()->route('user.sponsor.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
+                    }
+                }
+            }
+            //se siamo qui la sponsorizzazione pruò essere creata
+
             //recuperiamo la data di inizio
             $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
             //recuperiamo le ore dello sponsor
