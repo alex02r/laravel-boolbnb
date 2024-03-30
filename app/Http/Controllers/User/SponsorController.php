@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\StoreSponsorApartmentRequest;
 use App\Models\Sponsor;
 use App\Http\Requests\StoreSponsorRequest;
 use App\Http\Requests\UpdateSponsorRequest;
@@ -100,14 +101,23 @@ class SponsorController extends Controller
             return view('errors.not_authorized');
         }
     }
-    public function payment( Apartment $apartment, Sponsor $sponsor){
-        $apartment = $apartment->where('user_id', auth()->user()->id)->get();
-        if (count($apartment) > 0) {
-           // $apartment->sponsors()->attach($sponsor, ['start_date' => 100, 'end_date' => 49.99]);
+    public function payment(StoreSponsorApartmentRequest $request, Apartment $apartment, Sponsor $sponsor){
+
+        $form_data = $request->all();
+    
+        if ($apartment->user_id == auth()->user()->id) {
+            //recuperiamo la data di inizio
+            $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
+            //recuperiamo le ore dello sponsor
+            $hours = '+'.$sponsor->duration.'hours';
+            //imopostiamo la data di fine con le ore dello sponsor
+            $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
+            //creiamo la relazione 
+            $apartment->sponsors()->attach($sponsor, ['start_date' => $start_date, 'end_date' => $end_date]);
         }else {
             return view('errors.not_authorized');
         }
-
-        return view('user.sponsor.sponsor-apartment', compact('apartment'));
+ 
+        return redirect()->route('user.sponsor.index');
     }
 }
