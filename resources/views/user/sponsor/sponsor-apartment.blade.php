@@ -16,6 +16,12 @@
                         </ul>
                     </div>
                 @endif
+                
+                @if (session('error_message'))
+                    <div class="alert alert-danger">
+                        {{ session('error_message') }}
+                    </div>
+                @endif
                 <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post">
                     @csrf
                     <div class="row">
