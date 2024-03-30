@@ -9,9 +9,11 @@
             @foreach ($sponsors as $sponsor)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card">
-                        <h5 class="card-header text-center">Sponsorizzazione {{ $sponsor->title }}</h5>
-                        <div class="card-body">
-                            <ul class="list-unstyled">
+                        <h5 class="card-header text-center"> <i class="fas fa-crown"></i> {{ $sponsor->title }} <i class="fas fa-crown"></i></h5>
+                        <div class="card-body text-center">
+                            <h5 class="card-title"> Prezzo : {{ $sponsor->price }}€</h5>
+                            <h5 class="card-title"> Durata : {{ $sponsor->duration }}h</h5>
+                            <ul class="list-unstyled ">
                                 @foreach ($apartments as $apartment)
                                 <li>
                                     <a href="" class="">{{ $apartment->title }}</a>
