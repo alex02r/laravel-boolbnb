@@ -31,7 +31,7 @@ class StoreSponsorApartmentRequest extends FormRequest
     public function messages()
     {
         return [
-            'start_date.required' => 'la data deve essere obbligatorio',
+            'start_date.required' => 'la data deve essere obbligatoria',
             'start_date.date' => 'Devi inserire una data',
 
             'start_time.required' => 'l\'orario deve essere obbligatorio',
