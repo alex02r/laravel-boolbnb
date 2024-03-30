@@ -36,10 +36,48 @@ class ApartmentController extends Controller
                     $coordinates['lat'],
                     $coordinates['lon'],
                     $coordinates['lat'],
-                    $request->input('distance', 100) / 1000,
+                    $request->input('distance', 100),
                 ]);
             }
         }
+
+        //filtraggio per stanze
+        if ($request->has('rooms')) {
+            $rooms = $request->input('rooms');
+            if (!empty($rooms)) {
+                //seleziono gli apartments dove il numero di stanze è uguale o maggiore
+                $query->where('rooms','>=', $rooms );
+            }
+        }
+
+        //filtraggio per i letti
+        if ($request->has('beds')) {
+            $beds = $request->input('beds');
+            if (!empty($beds)) {
+                //seleziono gli apartments dove il numero di letti è uguale o maggiore
+                $query->where('beds','>=', $beds );
+            }
+        }
+
+        //filtraggio per bagni
+        if ($request->has('bathrooms')) {
+            $bathrooms = $request->input('bathrooms');
+            if (!empty($bathrooms)) {
+                //seleziono gli apartments dove il numero di bagni è uguale o maggiore
+                $query->where('bathrooms','>=', $bathrooms );
+            }
+        }
+
+        //filtraggio per i servizi
+        if ($request->has('services')) {
+            $services = $request->input('services');
+            if (!empty($services)) {
+                $query->whereHas('services', function ($q) use ($services) {
+                    $q->whereIn('id', $services);
+                });
+            }
+        }
+
         $apartments = $query->get();
         if(empty($query)){
             return response()->json([
@@ -51,6 +89,22 @@ class ApartmentController extends Controller
         return response()->json([
             'success' => true,
             'apartments' => $apartments
+        ]);
+    }
+
+    public function singleApartment($slug, $id){
+        $apartment = Apartment::where('id', $id)->where('slug', $slug)->get();
+    
+        if($apartment->isEmpty()){
+            return response()->json([
+                'success' => false,
+                'error' => 'Array vuoto'
+            ]);
+        }
+    
+        return response()->json([
+            'success' => true,
+            'apartment' => $apartment
         ]);
     }
 

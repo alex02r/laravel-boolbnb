@@ -22,6 +22,15 @@
                             - {{ $apartment->square_meters }} Mq
                         </p>
                         <div>
+                            <p class="fw-bold m-0">SERVIZI DISPONIBILI</p>
+                            @forelse ($apartment->services as $service)
+                                <span class="badge text-bg-secondary my-2">{{ $service->name }} </span>
+                            @empty
+                                <p>Nessun servizio</p>
+                            @endforelse
+                        </div>
+
+                        <div class="mt-4">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                 class="btn btn-sm btn-warning text-white fw-bold">MODIFICA</a>
                             <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
