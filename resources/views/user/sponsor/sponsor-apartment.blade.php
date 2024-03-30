@@ -45,6 +45,33 @@
                     </div>
                 </form>
             </div>
+            <div class="col-12">
+                <h2> Sponsorizzaioni già presenti:</h2>
+                @if (count($apartment->sponsors) > 0)
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sponsor</th>
+                                <th>Data inizio</th>
+                                <th>Data fine</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($apartment->sponsors as $item)
+                                @if ( date("Y-m-d H:i:s") < $item->pivot->end_date)
+                                    <tr>
+                                        <th>{{ $item->title }}</th>
+                                        <th>{{ $item->pivot->start_date }}</th>
+                                        <th>{{ $item->pivot->end_date }}</th>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <h3>Nessuna</h3>   
+                @endif
+            </div>
         </div>
     </div>
 @endsection
