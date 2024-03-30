@@ -22,33 +22,32 @@
                             </ul>
                         </div>
                     </div>
-                    {{-- <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nome appartamneto</th>
-                                <th></th>
-                                <th>Data fine</th>
-                                <th>stato</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($apartments as $apartment)
-                                @foreach ($apartment->sponsors as $item)
-
-                                @if ($sponsor->id == $item->id)
-                                    <tr>
-                                        <th>{{ $apartment->title }}</th>
-                                        <th>{{ $item->pivot->start_date }}</th>
-                                        <th>{{ $item->pivot->ending_date }}</th>
-                                        <th></th>
-                                    </tr>
-                                @endif
-                                @endforeach
-                            @endforeach
-                        </tbody>
-                    </table> --}}
                 </div>
-            @endforeach
+                @endforeach
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome appartamneto</th>
+                            <th>Sponsr</th>
+                            <th>Data inizio</th>
+                            <th>Data fine</th>
+                            <th>stato</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($apartments as $apartment)
+                            @foreach ($apartment->sponsors as $item)
+                            <tr>
+                                <th>{{ $apartment->title }}</th>
+                                <th>{{ $item->title }}</th>
+                                <th>{{ $item->pivot->start_date }}</th>
+                                <th>{{ $item->pivot->end_date }}</th>
+                                <th>{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? 'in corso' : 'finita' }}</th>
+                            </tr>
+                            @endforeach
+                        @endforeach
+                    </tbody>
+                </table>
         </div>
     </div>
 @endsection
