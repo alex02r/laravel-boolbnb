@@ -92,6 +92,22 @@ class ApartmentController extends Controller
         ]);
     }
 
+    public function singleApartment($slug, $id){
+        $apartment = Apartment::where('id', $id)->where('slug', $slug)->get();
+    
+        if($apartment->isEmpty()){
+            return response()->json([
+                'success' => false,
+                'error' => 'Array vuoto'
+            ]);
+        }
+    
+        return response()->json([
+            'success' => true,
+            'apartment' => $apartment
+        ]);
+    }
+
     //funzione che ci restituisce latitudine e longitudine di un indirizzo
     private function getCoordinates($address)
     {
