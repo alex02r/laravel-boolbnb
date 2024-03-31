@@ -30,6 +30,20 @@
                             @endforelse
                         </div>
 
+                        <div>
+                            <p class="fw-bold m-0">Sponsorizzazioni attive</p>
+                            @forelse ($apartment->sponsors as $sponsor)
+                                <ul class="list-unstyled">
+                                    <li>Nome: {{ $sponsor->title }}</li>
+                                    <li>Inizio: {{ $sponsor->pivot->start_date }}</li>
+                                    <li>Fine: {{ $sponsor->pivot->end_date }}</li>
+                                </ul>
+                                <span> </span>
+                            @empty
+                                <p>Nessuna sponsorizzazione</p>
+                            @endforelse
+                        </div>
+
                         <div class="mt-4">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                 class="btn btn-sm btn-warning text-white fw-bold">MODIFICA</a>
