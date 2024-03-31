@@ -11,7 +11,7 @@
                     <div class="card">
                         <h5 class="card-header bg-dark text-center text-white"> <i class="fas fa-crown"></i> {{ $sponsor->title }} <i class="fas fa-crown"></i></h5>
                         <div class="card-body text-center">
-                            <h5 class="card-title"> Prezzo : {{ $sponsor->price }}€</h5>
+                            <h5 class="card-title"> Prezzo : <span class="text-warning fw-bold">{{ $sponsor->price }}€</span></h5>
                             <h5 class="card-title"> Durata : {{ $sponsor->duration }}h</h5>
                             <ul class="list-unstyled ">
                                 @foreach ($apartments as $apartment)
@@ -38,11 +38,11 @@
                         @foreach ($apartments as $apartment)
                             @foreach ($apartment->sponsors as $item)
                             <tr>
-                                <th>{{ $apartment->title }}</th>
-                                <th>{{ $item->title }}</th>
-                                <th class="d-none d-lg-table-cell">{{ $item->pivot->start_date }}</th>
-                                <th class="d-none d-lg-table-cell">{{ $item->pivot->end_date }}</th>
-                                <th class="{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "text-success fw-bold" : 'text-danger fw-bold' }}">{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "In corso" : 'Finita' }}</th>
+                                <td>{{ $apartment->title }}</td>
+                                <td class="fw-bold">{{ $item->title }}</td>
+                                <td class="d-none d-lg-table-cell">{{ $item->pivot->start_date }}</td>
+                                <td class="d-none d-lg-table-cell">{{ $item->pivot->end_date }}</td>
+                                <td class="{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "text-success fw-bold" : 'text-danger fw-bold' }}">{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "In corso" : 'Finita' }}</td>
                             </tr>
                             @endforeach
                         @endforeach
