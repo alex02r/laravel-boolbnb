@@ -23,31 +23,36 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-                <table class="table table-striped mt-4">
-                    <thead>
+            @endforeach
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Nome appartamneto</th>
+                        <th>Sponsor</th>
+                        <th class="d-none d-lg-table-cell">Data inizio</th>
+                        <th class="d-none d-lg-table-cell">Data fine</th>
+                        <th>Stato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($apartments as $apartment)
+                        @foreach ($apartment->sponsors as $item)
                         <tr>
-                            <th>Nome appartamneto</th>
-                            <th>Sponsor</th>
-                            <th class="d-none d-lg-table-cell">Data inizio</th>
-                            <th class="d-none d-lg-table-cell">Data fine</th>
-                            <th>Stato</th>
+                            <td>{{ $apartment->title }}</td>
+                            <td class="fw-bold">{{ $item->title }}</td>
+                            <td class="d-none d-lg-table-cell">{{ $item->pivot->start_date }}</td>
+                            <td class="d-none d-lg-table-cell">{{ $item->pivot->end_date }}</td>
+                            <td class="{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "text-success fw-bold" : 'text-danger fw-bold' }}">{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "In corso" : 'Finita' }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($apartments as $apartment)
-                            @foreach ($apartment->sponsors as $item)
-                            <tr>
-                                <td>{{ $apartment->title }}</td>
-                                <td class="fw-bold">{{ $item->title }}</td>
-                                <td class="d-none d-lg-table-cell">{{ $item->pivot->start_date }}</td>
-                                <td class="d-none d-lg-table-cell">{{ $item->pivot->end_date }}</td>
-                                <td class="{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "text-success fw-bold" : 'text-danger fw-bold' }}">{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "In corso" : 'Finita' }}</td>
-                            </tr>
-                            @endforeach
                         @endforeach
-                    </tbody>
-                </table>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
