@@ -76,9 +76,10 @@
     <script type="text/javascript">
         //braintree 
         const form = document.getElementById('payment-form');
+        let client_token = {{ $token }}
 
         braintree.dropin.create({
-            authorization: 'CLIENT_AUTHORIZATION',
+            authorization: client_token,
             container: '#dropin-container'
         }, (error, dropinInstance) => {
             if (error) console.error(error);
