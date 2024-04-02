@@ -15,8 +15,8 @@ class MessageController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data,[
-                'user_mail' => 'email|required|min:5|max:100',
-                'message' => 'required|string|min:5',
+                'user_mail' => 'required|min:5|max:100',
+                'message' => 'required|min:5',
                 'apartment_id' => 'required'
             ], $errors = [
                 'user_mail.required' => 'La email è obbligatoria.',
