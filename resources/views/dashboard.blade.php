@@ -17,9 +17,23 @@
                         <div class="alert bg-body-secondary" role="alert">
                             <a href="{{ route('user.apartment.index') }}"
                                 class="nav-link text-dark {{ Route::currentRouteName() == 'user.apartment.index' ? 'bg-secondary' : '' }}">
-                                APPARTAMENTI
+                                I tuoi Appartamenti
                             </a>
                         </div>
+                        @if (count(Auth::user()->apartments) > 0)
+                            <div class="alert bg-body-secondary" role="alert">
+                                <a href="{{ route('user.sponsor.index') }}"
+                                    class="nav-link text-dark {{ Route::currentRouteName() == 'user.sponsor.index' ? 'bg-secondary' : '' }}">
+                                    Le Sponsorizzazioni
+                                </a>
+                            </div>
+                            <div class="alert bg-body-secondary" role="alert">
+                                <a href="{{ route('user.message.index') }}"
+                                    class="nav-link text-dark {{ Route::currentRouteName() == 'user.message.index' ? 'bg-secondary' : '' }}">
+                                    I tuoi Messaggi
+                                </a>
+                            </div>
+                         @endif
                     </div>
                 </div>
             </div>

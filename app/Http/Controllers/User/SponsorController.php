@@ -93,6 +93,8 @@ class SponsorController extends Controller
     {
         //
     }
+
+    // FUNZIONE PER CREARE UNO SPONSOR
     public function createSponsor(Apartment $apartment, Sponsor $sponsor){
 
         if ($apartment->user_id == auth()->user()->id) {
@@ -101,6 +103,8 @@ class SponsorController extends Controller
             return view('errors.not_authorized');
         }
     }
+
+    // FUNZIONE PER IL PAGAMENTO
     public function payment(StoreSponsorApartmentRequest $request, Apartment $apartment, Sponsor $sponsor){
 
         $form_data = $request->all();

@@ -22,7 +22,7 @@
                         {{ session('error_message') }}
                     </div>
                 @endif
-                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post">
+                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" class="my-5">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -45,7 +45,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-12">
+            <div class="col-12 mt-3">
                 <h2> Sponsorizzaioni già presenti:</h2>
                 @if (count($apartment->sponsors) > 0)
                     <table class="table table-striped">
@@ -69,7 +69,7 @@
                         </tbody>
                     </table>
                 @else
-                    <h3>Nessuna</h3>   
+                    <h4>Nessuna</h4>   
                 @endif
             </div>
         </div>

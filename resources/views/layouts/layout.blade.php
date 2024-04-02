@@ -36,10 +36,8 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <div class="logo_laravel text-danger fs-1 fw-bold">
-                        BoolBnB
-                    </div>
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('http://localhost:5174') }}">
+                        <img class="w-75" src="/img/logo.png" alt="">
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
 
@@ -51,7 +49,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto pt-2">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('http://localhost:5174') }}">{{ __('Home') }}</a>
                         </li>
