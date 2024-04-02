@@ -18,7 +18,7 @@
                 @endif
                 
                 
-                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" class="my-5">
+                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" id="payment-form" class="my-5">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -34,9 +34,12 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-success">
+                            <div id="dropin-container"></div>
+                            <input type="submit" />
+                            <input type="hidden" id="nonce" name="payment_method_nonce" />
+                           {{--  <button type="submit" class="btn btn-success">
                                 Sponsorizza
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                 </form>
