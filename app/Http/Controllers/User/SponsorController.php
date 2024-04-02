@@ -101,10 +101,10 @@ class SponsorController extends Controller
         if ($apartment->user_id == auth()->user()->id) {
 
             $gateway = new Braintree\Gateway([
-                'environment' => config('servicers.braintree.environment'),
-                'merchantId' => config('servicers.braintree.merchantId'),
-                'publicKey' => config('servicers.braintree.publicKey'),
-                'privateKey' => config('servicers.braintree.privateKey'),
+                'environment' => config('services.braintree.environment'),
+                'merchantId' => config('services.braintree.merchantId'),
+                'publicKey' => config('services.braintree.publicKey'),
+                'privateKey' => config('services.braintree.privateKey'),
             ]);
 
             $token = $gateway->clientToken()->generate();
