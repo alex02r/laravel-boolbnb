@@ -119,6 +119,38 @@ class SponsorController extends Controller
     public function payment(StoreSponsorApartmentRequest $request, Apartment $apartment, Sponsor $sponsor){
 
         $form_data = $request->all();
+
+        //controlli sull'avventuo pagamento
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey'),
+        ]);
+
+        $nonce = $form_data['payment_method_nonce'];
+
+        $result = $gateway->transaction()->sale([
+            'amount' => $sponsor->price,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+
+        ]);
+
+        if ($result->success) {
+            //transazione avvenuta con successo
+
+            $transition = $result->transaction;
+        }else{
+            $errorString = "";
+
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: '.$error->code.': '.$error->message.'\n';
+            }
+            return back()->withErrors('Messaggio di errore: '.$errorString);
+        }
     
         if ($apartment->user_id == auth()->user()->id) {
 
@@ -158,6 +190,6 @@ class SponsorController extends Controller
             return view('errors.not_authorized');
         }
  
-        return redirect()->route('user.sponsor.index');
+        return redirect()->route('user.sponsor.index')->with('message', 'Sponsorizzazione avvenuta con successo');
     }
 }
