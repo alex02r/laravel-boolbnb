@@ -7,7 +7,7 @@
                 <div class="card color_card py-3">
                     <div class="card-body">
                         <h2 class="card-title mb-3">Messaggio da {{ $message->user_mail }}</h2>
-                        <a href="{{ route('user.apartment.show', ['apartment' => $apartment]) }}"> <h5>Per appartamento: {{ $apartment->title }}</h5> </a>
+                         <h5>Per appartamento: <a href="{{ route('user.apartment.show', ['apartment' => $apartment]) }}"> {{ $apartment->title }}</a> </h5>
                         <p> <strong>Contenuto del messaggio:</strong> <span class="text-secondary">{{ $message->message }}</span></p>
                         <p> <strong>Messaggio inviato il:</strong> <span class="text-secondary">{{ $message->created_at }}</span></p>
                         {{-- MODALE DELETE --}}
