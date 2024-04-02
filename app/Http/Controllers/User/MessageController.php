@@ -25,6 +25,7 @@ class MessageController extends Controller
         ->join('users', 'users.id', '=', 'apartments.user_id')
         ->select('messages.*', 'apartments.title', 'apartments.slug')
         ->where('users.id', '=', $user->id)
+        ->orderBy('created_at', 'desc')
         ->get();
 
         $apartments = Apartment::where('user_id', auth()->user()->id)->get();
