@@ -12,8 +12,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Data di arrivo</th>
                             <th>Email</th>
-                            <th>Per appartamento</th>
+                            <th class="d-none d-md-table-cell">Per appartamento</th>
                             <th class="d-none d-lg-table-cell">Messaggio</th>
                             <th class="text-center">Visualizzato</th>
                             <th>Strumenti</th>
@@ -22,8 +23,9 @@
                     <tbody>
                             @forelse ($messages as $message)
                                 <tr>
+                                    <td>{{ $message->created_at }}</td>
                                     <td>{{ $message->user_mail }}</td>
-                                    <td><a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}">{{ $message->title }}</a></td>
+                                    <td class="d-none d-md-table-cell"><a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}">{{ $message->title }}</a></td>
                                     <td class="d-none d-lg-table-cell">{{ Str::limit($message->message, 15, '...') }}</td>
                                     <td class="text-center">
                                         <i class="{{ $message->viewed ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
