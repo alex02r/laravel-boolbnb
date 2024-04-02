@@ -8,6 +8,7 @@ use App\Http\Requests\StoreSponsorRequest;
 use App\Http\Requests\UpdateSponsorRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
+use Braintree;
 
 class SponsorController extends Controller
 {
@@ -98,7 +99,17 @@ class SponsorController extends Controller
     public function createSponsor(Apartment $apartment, Sponsor $sponsor){
 
         if ($apartment->user_id == auth()->user()->id) {
-            return view('user.sponsor.sponsor-apartment', compact('apartment', 'sponsor'));
+
+            $gateway = new Braintree\Gateway([
+                'environment' => config('servicers.braintree.environment'),
+                'merchantId' => config('servicers.braintree.merchantId'),
+                'publicKey' => config('servicers.braintree.publicKey'),
+                'privateKey' => config('servicers.braintree.privateKey'),
+            ]);
+
+            $token = $gateway->clientToken()->generate();
+
+            return view('user.sponsor.sponsor-apartment', compact('apartment', 'sponsor', 'token'));
         }else {
             return view('errors.not_authorized');
         }
