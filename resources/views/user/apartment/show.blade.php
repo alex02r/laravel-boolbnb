@@ -46,7 +46,8 @@
 
                         <div>
                             <h1>Conteggio delle visite</h1>
-                            <p>Questa pagina è stata visitata {{ $visitCount }} volte.</p>
+                            <canvas id="myChart"></canvas>
+                            {{-- <p>Questa pagina è stata visitata {{ $visitCount }} volte.</p> --}}
                         </div>
 
                         <div class="mt-4">
@@ -63,4 +64,30 @@
         </div>
     </div>
     @include('user.apartment.modal_delete')
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: 'Numero di visualizzazione per questo appartamento',
+                data: [{{ $visitCount }}],
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+    </script>
+
 @endsection
