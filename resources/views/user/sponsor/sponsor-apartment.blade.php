@@ -18,25 +18,30 @@
                 @endif
                 
                 
-                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" class="my-5">
+                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" id="payment-form" class="my-5">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Seleziona la data di inizio</label>
+                                <label for="start_date" class="form-label">Seleziona la data di inizio</label>
                                 <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Inserisci l'orario di inizio</label>
+                                <label for="end_date" class="form-label">Inserisci l'orario di inizio</label>
                                 <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}" required>
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-success">
+                            <h5>Prezzo: {{ $sponsor->price }}</h5>
+                            <div id="dropin-container"></div>
+                            <input id="nonce" name="payment_method_nonce" type="hidden" />
+                            <input type="hidden" name="token" id="token" value="{{ $token }}" />
+                            <input type="submit" class="btn btn-success" value="Paga"/>
+                           {{--  <button type="submit" class="btn btn-success">
                                 Sponsorizza
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                 </form>
@@ -70,4 +75,34 @@
             </div>
         </div>
     </div>
+    {{-- PayPal Braintree --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
+    <script>
+        //braintree 
+        const form = document.getElementById('payment-form');
+        const client_token = document.getElementById('token').value;
+
+        braintree.dropin.create({
+            authorization: client_token,
+            container: '#dropin-container'
+        }, (error, dropinInstance) => {
+            if (error) console.error(error);
+
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+
+                dropinInstance.requestPaymentMethod((error, payload) => {
+                if (error) console.error(error);
+
+                // Step four: when the user is ready to complete their
+                //   transaction, use the dropinInstance to get a payment
+                //   method nonce for the user's selected payment method, then add
+                //   it a the hidden field before submitting the complete form to
+                //   a server-side integration
+                document.querySelector('#nonce').value = payload.nonce;
+                form.submit();
+                });
+            });
+        });
+    </script>
 @endsection
