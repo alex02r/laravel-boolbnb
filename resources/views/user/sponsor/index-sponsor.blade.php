@@ -16,7 +16,7 @@
                             <ul class="list-unstyled ">
                                 @foreach ($apartments as $apartment)
                                 <li>
-                                    <a href="{{ route('user.createSponsor', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" class="link-info text-decoration-none">{{ $apartment->title }}</a>
+                                    <a href="{{ route('user.createSponsor', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" class="link-dark link-underline-opacity-0 link-underline-opacity-100-hover">{{ $apartment->title }}</a>
                                 </li>
                                 @endforeach
                             </ul>
