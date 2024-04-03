@@ -44,6 +44,11 @@
                             @endforelse
                         </div>
 
+                        <div>
+                            <h1>Conteggio delle visite</h1>
+                            <p>Questa pagina è stata visitata {{ $visitCount }} volte.</p>
+                        </div>
+
                         <div class="mt-4">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                 class="btn btn-sm btn-warning text-white fw-bold">MODIFICA</a>
