@@ -23,20 +23,25 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Seleziona la data di inizio</label>
+                                <label for="start_date" class="form-label">Seleziona la data di inizio</label>
                                 <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Inserisci l'orario di inizio</label>
+                                <label for="end_date" class="form-label">Inserisci l'orario di inizio</label>
                                 <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}" required>
                             </div>
                         </div>
                         <div class="col-12">
+                            <div class="mb-3">
+                                <h5>Prezzo: {{ $sponsor->price }}</h5>
+                            </div>
+
                             <div id="dropin-container"></div>
-                            <input type="submit" />
-                            <input type="hidden" id="nonce" name="payment_method_nonce" />
+                            <input id="nonce" name="payment_method_nonce" type="hidden" />
+                            <input type="hidden" name="token" id="token" value="{{ $token }}" />
+                            <input type="submit"/>
                            {{--  <button type="submit" class="btn btn-success">
                                 Sponsorizza
                             </button> --}}
@@ -73,10 +78,12 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+    {{-- PayPal Braintree --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
+    <script>
         //braintree 
         const form = document.getElementById('payment-form');
-        let client_token = {{ $token }}
+        const client_token = document.getElementById('token').value;
 
         braintree.dropin.create({
             authorization: client_token,
@@ -95,7 +102,7 @@
                 //   method nonce for the user's selected payment method, then add
                 //   it a the hidden field before submitting the complete form to
                 //   a server-side integration
-                document.getElementById('nonce').value = payload.nonce;
+                document.querySelector('#nonce').value = payload.nonce;
                 form.submit();
                 });
             });
