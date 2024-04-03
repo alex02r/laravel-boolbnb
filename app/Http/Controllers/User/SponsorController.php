@@ -106,7 +106,6 @@ class SponsorController extends Controller
                 'publicKey' => config('services.braintree.publicKey'),
                 'privateKey' => config('services.braintree.privateKey'),
             ]);
-
             $token = $gateway->clientToken()->generate();
 
             return view('user.sponsor.sponsor-apartment', compact('apartment', 'sponsor', 'token'));
@@ -140,9 +139,45 @@ class SponsorController extends Controller
         ]);
 
         if ($result->success) {
-            //transazione avvenuta con successo
-
             $transition = $result->transaction;
+            
+            if ($apartment->user_id == auth()->user()->id) {
+
+                //controlliamo se esistono sponsorizzazioni
+                if (!empty($apartment->sponsors)) {
+                    //cicliamo tutte le sponsorizzazioni
+                    foreach ($apartment->sponsors as $item) {
+                        //controlliamo se la data di fine ancora deve terminare
+                        $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
+                        if ( $start_date < $item->pivot->end_date ) {
+                            //se è già presente una sponsor in corso, aumentiamo il tempo della sponsor
+                            $hours = '+'.$sponsor->duration.'hours';
+                            $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
+                            $item->pivot->end_date = $end_date;
+                            $item->pivot->sponsor_id = $sponsor->id;
+                            $item->pivot->save();
+                            /* 
+                            $error_message = 'É già presente una sponsorizzazione che finisce in data: '.$item->pivot->end_date.' per l\'appartamento '.$apartment->title;
+                            return redirect()->route('user.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
+                            */
+                            $message ='hai aggiunto '.$sponsor->duration.' ore alla sponsorizzazione';
+                            return redirect()->route('user.sponsor.index', compact('apartment', 'sponsor'))->with('message', $message);
+                        }
+                    }
+                }
+                //se siamo qui la sponsorizzazione pruò essere creata
+    
+                //recuperiamo la data di inizio
+                $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
+                //recuperiamo le ore dello sponsor
+                $hours = '+'.$sponsor->duration.'hours';
+                //imopostiamo la data di fine con le ore dello sponsor
+                $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
+                //creiamo la relazione 
+                $apartment->sponsors()->attach($sponsor, ['start_date' => $start_date, 'end_date' => $end_date]);
+            }else {
+                return view('errors.not_authorized');
+            }
         }else{
             $errorString = "";
 
@@ -152,43 +187,7 @@ class SponsorController extends Controller
             return back()->withErrors('Messaggio di errore: '.$errorString);
         }
     
-        if ($apartment->user_id == auth()->user()->id) {
-
-            //controlliamo se esistono sponsorizzazioni
-            if (!empty($apartment->sponsors)) {
-                //cicliamo tutte le sponsorizzazioni
-                foreach ($apartment->sponsors as $item) {
-                    //controlliamo se la data di fine ancora deve terminare
-                    $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
-                    if ( $start_date < $item->pivot->end_date ) {
-                        //se è già presente una sponsor in corso, aumentiamo il tempo della sponsor
-                        $hours = '+'.$sponsor->duration.'hours';
-                        $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
-                        $item->pivot->end_date = $end_date;
-                        $item->pivot->sponsor_id = $sponsor->id;
-                        $item->pivot->save();
-                        /* 
-                        $error_message = 'É già presente una sponsorizzazione che finisce in data: '.$item->pivot->end_date.' per l\'appartamento '.$apartment->title;
-                        return redirect()->route('user.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
-                        */
-                        $message ='hai aggiunto '.$sponsor->duration.' ore alla sponsorizzazione';
-                        return redirect()->route('user.sponsor.index', compact('apartment', 'sponsor'))->with('message', $message);
-                    }
-                }
-            }
-            //se siamo qui la sponsorizzazione pruò essere creata
-
-            //recuperiamo la data di inizio
-            $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
-            //recuperiamo le ore dello sponsor
-            $hours = '+'.$sponsor->duration.'hours';
-            //imopostiamo la data di fine con le ore dello sponsor
-            $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
-            //creiamo la relazione 
-            $apartment->sponsors()->attach($sponsor, ['start_date' => $start_date, 'end_date' => $end_date]);
-        }else {
-            return view('errors.not_authorized');
-        }
+        
  
         return redirect()->route('user.sponsor.index')->with('message', 'Sponsorizzazione avvenuta con successo');
     }
