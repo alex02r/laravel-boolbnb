@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\View;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
@@ -121,7 +122,10 @@ class ApartmentController extends Controller
             return view('errors.not_authorized');
         }
 
-        return view('user.apartment.show', compact('apartment'));
+        // Recupera il conteggio delle visite per questa pagina
+        $visitCount = View::where('apartment_id', $apartment->id)->count();
+
+        return view('user.apartment.show', compact('apartment', 'visitCount'));
     }
 
     /**
