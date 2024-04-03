@@ -34,14 +34,11 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="mb-3">
-                                <h5>Prezzo: {{ $sponsor->price }}</h5>
-                            </div>
-
+                            <h5>Prezzo: {{ $sponsor->price }}</h5>
                             <div id="dropin-container"></div>
                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                             <input type="hidden" name="token" id="token" value="{{ $token }}" />
-                            <input type="submit"/>
+                            <input type="submit" class="btn btn-success" value="Paga"/>
                            {{--  <button type="submit" class="btn btn-success">
                                 Sponsorizza
                             </button> --}}
