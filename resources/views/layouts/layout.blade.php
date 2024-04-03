@@ -26,8 +26,6 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js">
     </script>
 
-    {{-- PayPal Braintree --}}
-    <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
