@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\MessageController;
 Route::get('/apartment', [ApartmentController::class, 'index']);
 Route::get('/search', [ApartmentController::class, 'search']);
 Route::get('/single/apartment/{slug}/{id}', [ApartmentController::class, 'singleApartment']);
+Route::get('/sponsor',[ApartmentController::class,'sponsor']);
 
 Route::post('/message', [MessageController::class, 'store']);
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Apartment;
 
@@ -78,7 +79,7 @@ class ApartmentController extends Controller
             }
         }
 
-        $apartments = $query->get();
+        $apartments = $query->with('sponsors')->get();
         if(empty($query)){
             return response()->json([
                 'success' => false,
@@ -140,5 +141,16 @@ class ApartmentController extends Controller
         $lat = $results['results'][0]['position']['lat'];
 
         return compact('lat', 'lon');
+    }
+
+    public function sponsor()
+    {
+       
+        $sponsorApartments = Apartment::with('sponsors')->whereHas('sponsors')->get();
+        
+        return response()->json([
+            'success' => true,
+            'results' => $sponsorApartments
+        ]);
     }
 }
