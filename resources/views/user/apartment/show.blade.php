@@ -44,7 +44,14 @@
                             @endforelse
                         </div>
 
-                        <div class="mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="mb-3">Statistiche visite giornaliere</h3>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                 class="btn btn-sm btn-warning text-white fw-bold">MODIFICA</a>
                             <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
@@ -58,4 +65,38 @@
         </div>
     </div>
     @include('user.apartment.modal_delete')
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let visits = @json($visits);
+        let dates = Object.keys(visits);
+        let visitCounts = Object.values(visits);
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+            labels: [ dates ],
+            datasets: [{
+                label: 'Visualizzazioni giornaliere per questo appartamento',
+                data: [{{ count($visitCount) }}],
+                borderWidth: 1,
+                fill: false,
+                borderColor: 'rgb(241, 91, 93)',
+                tension: 0.2,
+                backgroundColor: 'rgb(241, 91, 93)',
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+    </script>
+
 @endsection
