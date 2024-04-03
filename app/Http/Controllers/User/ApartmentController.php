@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use Carbon\Carbon;
+
 class ApartmentController extends Controller
 {
     /**
@@ -122,10 +124,21 @@ class ApartmentController extends Controller
             return view('errors.not_authorized');
         }
 
-        // Recupera il conteggio delle visite per questa pagina
-        $visitCount = View::where('apartment_id', $apartment->id)->count();
+        // Recupero il conteggio delle visite per la pagina dell'appartamento
+        $visitCount = View::where('apartment_id', $apartment->id)->get();
 
-        return view('user.apartment.show', compact('apartment', 'visitCount'));
+        // Recupero  e ordino in base alla data in cui è avvenuta la visita
+        $visits = View::where('apartment_id', $apartment->id)
+        ->orderBy('date')
+        ->get()
+        ->groupBy(function ($visit) {
+            return Carbon::parse($visit->date)->format('d/m/Y');
+        })
+        ->map(function ($groupedVisits) {
+            return $groupedVisits->count();
+        });
+
+        return view('user.apartment.show', compact('apartment', 'visits', 'visitCount'));
     }
 
     /**

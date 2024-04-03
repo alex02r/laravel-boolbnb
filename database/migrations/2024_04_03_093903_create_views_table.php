@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('views', function (Blueprint $table) {
             $table->id();
             $table->string('ip', 50);
-            $table->timestamp('date')->default(now());
+            $table->timestamp('date')->useCurrent()->format('d/m/Y H:i');
             $table->timestamps();
         });
     }
