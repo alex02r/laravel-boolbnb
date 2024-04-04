@@ -46,8 +46,12 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="mb-3">Statistiche visite giornaliere</h3>
-                                <canvas id="myChart"></canvas>
+                                <h5 class="mb-3">Statistiche numero di visualizzazioni e messaggi ricevuti</h5>
+                                @if ($visitCount > 0 || $messCount > 0)
+                                    <canvas id="myChart"></canvas>    
+                                @else
+                                    <p>Nessun dato disponibile per poter visualizzare il grafico.</p>
+                                @endif
                             </div>
                         </div>
 
@@ -76,26 +80,17 @@
         const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
-            type: 'line',
+            type: 'doughnut',
             data: {
-            labels: [ dates ],
+            labels: [ 'Visualizzazioni', 'Messaggi' ],
             datasets: [{
-                label: 'Visualizzazioni giornaliere per questo appartamento',
-                data: [{{ count($visitCount) }}],
-                borderWidth: 1,
-                fill: false,
-                borderColor: 'rgb(241, 91, 93)',
-                tension: 0.2,
-                backgroundColor: 'rgb(241, 91, 93)',
+                label: ' Numero totale',
+                data: [{{ $visitCount }}, {{ $messCount }}],
+                borderColor: ['rgb(241, 91, 93)', 'rgb(54, 162, 235)'],
+                backgroundColor: ['rgb(241, 91, 93)', 'rgb(54, 162, 235)'],
+                hoverOffset: 4
             }]
             },
-            options: {
-            scales: {
-                y: {
-                beginAtZero: true
-                }
-            }
-            }
         });
     </script>
 
