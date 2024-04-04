@@ -7,6 +7,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\View;
+use App\Models\Message;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
@@ -118,14 +119,16 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show(Apartment $apartment, Message $message)
     {
         if ($apartment->user_id != Auth::id()) {
             return view('errors.not_authorized');
         }
 
         // Recupero il conteggio delle visite per la pagina dell'appartamento
-        $visitCount = View::where('apartment_id', $apartment->id)->get();
+        $visitCount = View::where('apartment_id', $apartment->id)->count();
+
+        $messCount = Message::where('apartment_id', $apartment->id)->count();
 
         // Recupero  e ordino in base alla data in cui è avvenuta la visita
         $visits = View::where('apartment_id', $apartment->id)
@@ -138,7 +141,7 @@ class ApartmentController extends Controller
             return $groupedVisits->count();
         });
 
-        return view('user.apartment.show', compact('apartment', 'visits', 'visitCount'));
+        return view('user.apartment.show', compact('apartment', 'message', 'visits', 'visitCount', 'messCount'));
     }
 
     /**
