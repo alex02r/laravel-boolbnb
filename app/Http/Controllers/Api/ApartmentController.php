@@ -160,7 +160,6 @@ class ApartmentController extends Controller
         }else {
             return response()->json([
                 'success' => false,
-                'results' => 'Non ci sono appartamenti da consigliare',
             ]);
         }
     }
