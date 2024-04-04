@@ -130,18 +130,7 @@ class ApartmentController extends Controller
 
         $messCount = Message::where('apartment_id', $apartment->id)->count();
 
-        // Recupero  e ordino in base alla data in cui è avvenuta la visita
-        $visits = View::where('apartment_id', $apartment->id)
-        ->orderBy('date')
-        ->get()
-        ->groupBy(function ($visit) {
-            return Carbon::parse($visit->date)->format('d/m/Y');
-        })
-        ->map(function ($groupedVisits) {
-            return $groupedVisits->count();
-        });
-
-        return view('user.apartment.show', compact('apartment', 'message', 'visits', 'visitCount', 'messCount'));
+        return view('user.apartment.show', compact('apartment', 'message', 'visitCount', 'messCount'));
     }
 
     /**
