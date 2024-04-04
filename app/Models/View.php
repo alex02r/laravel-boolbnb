@@ -9,15 +9,10 @@ class View extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['apartment_id', 'message_id', 'ip', 'date'];
+    protected $fillable = ['apartment_id', 'ip', 'date'];
 
     public function apartment()
     {
         return $this->belongsTo(Apartment::class);
-    }
-
-    public function message()
-    {
-        return $this->belongsTo(Message::class);
     }
 }

@@ -15,9 +15,4 @@ class Message extends Model
     {
         return $this->belongsTo(Apartment::class);
     }
-
-    public function views()
-    {
-        return $this->hasMany(View::class);
-    }
 }
