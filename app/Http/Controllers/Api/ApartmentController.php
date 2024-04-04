@@ -146,10 +146,16 @@ class ApartmentController extends Controller
 
     public function sponsor()
     {
-        $currentDate = '2024-04-04 21:43:00'; // Ottieni la data e l'ora corrente
-        $apartments = Apartment::whereHas('sponsors', function($query) use ($currentDate) {
-            $query->where('start_date', '<=', $currentDate)
-                  ->where('end_date', '>=', $currentDate);
+        $currentDate = Carbon::now();
+        // Imposta il fuso orario su 'Europe/Rome'
+        $currentDate->setTimezone('Europe/Rome');
+
+        // Ottieni la data corrente formattata nel modo desiderato
+        $currentDateString = $currentDate->toDateTimeString();
+
+        $apartments = Apartment::whereHas('sponsors', function($query) use ($currentDateString) {
+            $query->where('start_date', '<=', $currentDateString)
+                  ->where('end_date', '>=', $currentDateString);
         })->with(['sponsors', 'services'])->get();
 
         if (!empty($apartments)) {
