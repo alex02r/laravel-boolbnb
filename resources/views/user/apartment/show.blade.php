@@ -73,10 +73,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        let visits = @json($visits);
-        let dates = Object.keys(visits);
-        let visitCounts = Object.values(visits);
-
         const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
