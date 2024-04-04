@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Apartment;
+use Carbon\Carbon;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -145,12 +146,22 @@ class ApartmentController extends Controller
 
     public function sponsor()
     {
-       
-        $sponsorApartments = Apartment::with('sponsors')->whereHas('sponsors')->get();
-        
-        return response()->json([
-            'success' => true,
-            'results' => $sponsorApartments
-        ]);
+        $currentDate = '2024-04-04 21:43:00'; // Ottieni la data e l'ora corrente
+        $apartments = Apartment::whereHas('sponsors', function($query) use ($currentDate) {
+            $query->where('start_date', '<=', $currentDate)
+                  ->where('end_date', '>=', $currentDate);
+        })->with(['sponsors', 'services'])->get();
+
+        if (!empty($apartments)) {
+            return response()->json([
+                'success' => true,
+                'results' => $apartments,
+            ]);
+        }else {
+            return response()->json([
+                'success' => false,
+                'results' => 'Non ci sono appartamenti da consigliare',
+            ]);
+        }
     }
 }
