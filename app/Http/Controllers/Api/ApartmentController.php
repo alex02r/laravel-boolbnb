@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Apartment;
+use Carbon\Carbon;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -145,12 +146,27 @@ class ApartmentController extends Controller
 
     public function sponsor()
     {
-       
-        $sponsorApartments = Apartment::with('sponsors')->whereHas('sponsors')->get();
-        
-        return response()->json([
-            'success' => true,
-            'results' => $sponsorApartments
-        ]);
+        $currentDate = Carbon::now();
+        // Imposta il fuso orario su 'Europe/Rome'
+        $currentDate->setTimezone('Europe/Rome');
+
+        // Ottieni la data corrente formattata nel modo desiderato
+        $currentDateString = $currentDate->toDateTimeString();
+
+        $apartments = Apartment::whereHas('sponsors', function($query) use ($currentDateString) {
+            $query->where('start_date', '<=', $currentDateString)
+                  ->where('end_date', '>=', $currentDateString);
+        })->with(['sponsors', 'services'])->get();
+
+        if (!empty($apartments)) {
+            return response()->json([
+                'success' => true,
+                'results' => $apartments,
+            ]);
+        }else {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
     }
 }
