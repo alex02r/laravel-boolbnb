@@ -149,8 +149,8 @@ class SponsorController extends Controller
                     foreach ($apartment->sponsors as $item) {
                         //controlliamo se la data di fine ancora deve terminare
                         $start_date = $form_data['start_date'].' '.$form_data['start_time'].':00';
-                        if ( $start_date < $item->pivot->end_date ) {
-                            //se è già presente una sponsor in corso, aumentiamo il tempo della sponsor
+                        if ( $start_date < $item->pivot->end_date && $start_date > $item->pivot->start_date) {
+                            //è già presente una sponsor in corso, aumentiamo il tempo della sponsor
                             $hours = '+'.$sponsor->duration.'hours';
                             $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
                             $item->pivot->end_date = $end_date;
