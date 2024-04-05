@@ -21,13 +21,13 @@
                             <div class="col-12 col-md-4">
                                 <div class="mb-3">
                                     <label for="start_date" class="form-label">Seleziona la data d'inizio</label>
-                                    <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
+                                    <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') ?? date("Y-m-d") }}" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="mb-3">
                                     <label for="end_date" class="form-label">Inserisci l'orario d'inizio</label>
-                                    <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}" required>
+                                    <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time')}}" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-8">
