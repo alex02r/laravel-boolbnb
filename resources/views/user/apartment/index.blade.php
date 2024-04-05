@@ -43,7 +43,7 @@
                                 </td>
                                 <td>
                                     {{-- se l'apartment non ha sponsor visualizziamo il link per la sponsorizzazione --}}
-                                    <a href="{{ route('user.sponsor.index') }}">Sponsorizza</a>
+                                    <a href="{{ route('user.createSponsor', ['apartment' => $apartment]) }}">Sponsorizza</a>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column d-md-flex flex-md-row gap-2">

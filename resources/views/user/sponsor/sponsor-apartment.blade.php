@@ -15,25 +15,32 @@
                         </div>
                     @endif
                     
-                    <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" id="payment-form" class="my-3">
+                    <form action="{{ route('user.payment', ['apartment' => $apartment]) }}" method="post" id="payment-form" class="my-3">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-md-4">
                                 <div class="mb-3">
                                     <label for="start_date" class="form-label">Seleziona la data d'inizio</label>
-                                    <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
+                                    <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') ?? date("Y-m-d") }}" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="mb-3">
                                     <label for="end_date" class="form-label">Inserisci l'orario d'inizio</label>
-                                    <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}" required>
+                                    <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time')}}" required>
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <h5>Sponsorizzazione : </h5>
+                                <select name="sponsor" id="sponsor" onchange="updateSponsorInfo()" class="form-select w-50">Sponsorizzazione: 
+                                    @foreach ($sponsors as $sponsor)
+                                        <option value="{{ $sponsor }}"> {{ $sponsor->title}} </option>
+                                    @endforeach
+                                </select>
+                                <h5 id="sponsor-duration"></h5>
+                                <h5 id="sponsor-price"></h5>
+                            </div>
                             <div class="col-12 col-md-8">
-                                <h5> Sponsor {{ $sponsor->title }}</h5>
-                                <h6>Durata: {{ $sponsor->duration }}h</h6>
-                                <h6>Prezzo: {{ $sponsor->price }}€</h6>
 
                                 <div id="dropin-container"></div>
                                 <input id="nonce" name="payment_method_nonce" type="hidden" />
@@ -81,6 +88,17 @@
     {{-- PayPal Braintree --}}
     <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
     <script>
+        //sript che mi visualizza le info della sponsorizzazione selezionata
+        function updateSponsorInfo(){
+            let selectSponsor = document.getElementById('sponsor');
+            let duration = document.getElementById('sponsor-duration');
+            let price = document.getElementById('sponsor-price');
+    
+            let sponsor = JSON.parse(selectSponsor.value);
+            duration.innerHTML = 'Durata: '+sponsor.duration+'h'; 
+            price.innerHTML = 'Prezzo: '+sponsor.price+'€'; 
+        }
+        updateSponsorInfo();
         //braintree 
         const form = document.getElementById('payment-form');
         const client_token = document.getElementById('token').value;
