@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center my-3">
-            <div class="col-8">
+            <div class="col-md-9">
+                <h2 class="mb-4">Messaggio da {{ $message->user_mail }}</h2>
                 <div class="card color_card py-3">
                     <div class="card-body">
-                        <h2 class="card-title mb-3">Messaggio da {{ $message->user_mail }}</h2>
                          <h5>Per appartamento: <a href="{{ route('user.apartment.show', ['apartment' => $apartment]) }}"> {{ $apartment->title }}</a> </h5>
-                        <p> <strong>Contenuto del messaggio:</strong> <span class="text-secondary">{{ $message->message }}</span></p>
+                        <p> <strong>Contenuto del messaggio:</strong> <span>{{ $message->message }}</span></p>
                         <p> <strong>Messaggio inviato il:</strong> <span class="text-secondary">{{ $message->created_at }}</span></p>
                         {{-- MODALE DELETE --}}
                         <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"

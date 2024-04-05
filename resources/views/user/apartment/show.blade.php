@@ -3,28 +3,26 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center my-3">
-            <div class="col-8">
-                <div class="card color_card py-3">
-
-                    <img class="card-img-top w-75 align-self-center"
+            <div class="col-md-8">
+                <div class="card color_card">
+                    <img class="card-img-top align-self-center"
                         src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}"
                         alt="{{ $apartment->title }}">
                     <div class="card-body">
                         <h2 class="card-title">{{ $apartment->title }}</h2>
                         <h5 class="text-secondary">{{ $apartment->address }}</h5>
-                        <p class="card-text">
-                            {{ $apartment->rooms }} {{ $apartment->rooms == 1 ? ' Camera' : ' Camere' }}
+                        <p class="card-text pt-2">
+                            <i class="fa-solid fa-house title-pink"></i> {{ $apartment->rooms }} {{ $apartment->rooms == 1 ? ' Camera' : ' Camere' }}
+                            - <i class="fa-solid fa-toilet title-pink"></i> {{ $apartment->bathrooms }} {{ $apartment->bathrooms == 1 ? ' Bagno' : ' Bagni' }}
 
-                            - {{ $apartment->bathrooms }} {{ $apartment->bathrooms == 1 ? ' Bagno' : ' Bagni' }}
+                            - <i class="fa-solid fa-bed title-pink"></i> {{ $apartment->beds }} {{ $apartment->beds == 1 ? ' Letto' : ' Letti' }}
 
-                            - {{ $apartment->beds }} {{ $apartment->beds == 1 ? ' Letto' : ' Letti' }}
-
-                            - {{ $apartment->square_meters }} Mq
+                            - <i class="fa-solid fa-house-circle-check title-pink"></i> {{ $apartment->square_meters }} Mq
                         </p>
                         <div>
-                            <p class="fw-bold m-0">SERVIZI DISPONIBILI</p>
+                            <p class="fw-bold m-0">Servizi disponibili</p>
                             @forelse ($apartment->services as $service)
-                                <span class="badge text-bg-secondary my-2">{{ $service->name }} </span>
+                                <span class="badge bg-pink my-2 service-texts">{{ $service->name }} </span>
                             @empty
                                 <p>Nessun servizio</p>
                             @endforelse
@@ -57,14 +55,17 @@
 
                         <div class="mt-5">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
-                                class="btn btn-sm btn-warning text-white fw-bold">MODIFICA</a>
+                                class="btn btn-sm btn-warning text-white fw-bold"><i class="fa-solid fa-edit"></i> MODIFICA</a>
                             <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
-                                data-bs-target="#modal_apartment_delete-{{ $apartment->id }}">
+                                data-bs-target="#modal_apartment_delete-{{ $apartment->id }}"><i class="fa-solid fa-trash"></i> 
                                 ELIMINA
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-10 text-center my-5">
+                    <a href="/user/apartment" > <button class="btn btn-secondary">Torna indietro</button></a>
             </div>
         </div>
     </div>

@@ -1,59 +1,59 @@
 @extends('layouts.layout')
 @section('content')
     <div class="container">
-        <div class="row bg-white rounded p-2">
-            <div class="col-12">
-                <h2>Sponsorizzaione: {{ $apartment->title }}</h2>
-            </div>
-            <div class="col-12 col-md-8">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                
-                <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" id="payment-form" class="my-3">
-                    @csrf
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <div class="mb-3">
-                                <label for="start_date" class="form-label">Seleziona la data d'inizio</label>
-                                <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
-                            </div>
+        <div class="row p-2">
+                <h2 class="mb-3">Sponsorizzaione: {{ $apartment->title }}</h2>
+            <div class="card color_card px-3">
+                <div class="col-12 col-md-8">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="col-12 col-md-4">
-                            <div class="mb-3">
-                                <label for="end_date" class="form-label">Inserisci l'orario d'inizio</label>
-                                <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}" required>
+                    @endif
+                    
+                    <form action="{{ route('user.payment', ['apartment' => $apartment, 'sponsor' => $sponsor]) }}" method="post" id="payment-form" class="my-3">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <div class="mb-3">
+                                    <label for="start_date" class="form-label">Seleziona la data d'inizio</label>
+                                    <input type="date" class="form-control" min="{{ date("Y-m-d") }}" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <h5> Sponsor {{ $sponsor->title }}</h5>
-                            <h6>Durata: {{ $sponsor->duration }}h</h6>
-                            <h6>Prezzo: {{ $sponsor->price }}€</h6>
+                            <div class="col-12 col-md-4">
+                                <div class="mb-3">
+                                    <label for="end_date" class="form-label">Inserisci l'orario d'inizio</label>
+                                    <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <h5> Sponsor {{ $sponsor->title }}</h5>
+                                <h6>Durata: {{ $sponsor->duration }}h</h6>
+                                <h6>Prezzo: {{ $sponsor->price }}€</h6>
 
-                            <div id="dropin-container"></div>
-                            <input id="nonce" name="payment_method_nonce" type="hidden" />
-                            <input type="hidden" name="token" id="token" value="{{ $token }}" />
-                            <input type="submit" class="btn btn-success" value="Paga"/>
-                           {{--  <button type="submit" class="btn btn-success">
-                                Sponsorizza
-                            </button> --}}
+                                <div id="dropin-container"></div>
+                                <input id="nonce" name="payment_method_nonce" type="hidden" />
+                                <input type="hidden" name="token" id="token" value="{{ $token }}" />
+                                <input type="submit" class="btn btn-success" value="Paga"/>
+                            {{--  <button type="submit" class="btn btn-success">
+                                    Sponsorizza
+                                </button> --}}
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 mt-3">
-                <h2> Sponsorizzaioni già presenti:</h2>
+            <div class="col-12 mt-4">
+                <h2 class="mb-3"> Sponsorizzaioni già presenti:</h2>
                 @if (count($apartment->sponsors) > 0)
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>Sponsor</th>
                                 <th>Data inizio</th>
