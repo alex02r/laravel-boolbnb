@@ -4,18 +4,18 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex flex-column m-2">
-                <h3 class="text-secondary text-uppercase">
+                <h3 class="text-uppercase">
                     LISTA APPARTAMENTI
                 </h3>
                 <div class="d-flex pb-4">
-                    <h5 class="text-secondary">Aggiungi appartamento</h5>
-                    <a href="{{ route('user.apartment.create') }}" class="btn btn-sm btn-secondary mx-2"><i
+                    <h5 class="title-pink fw-bold">Aggiungi appartamento</h5>
+                    <a href="{{ route('user.apartment.create') }}" class="btn btn-sm btn-form-message mx-2"><i
                             class="fas fa-plus"></i></a>
                 </div>
             </div>
             <div class="col-12 ">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th>Titolo</th>
                             <th class="d-none d-lg-table-cell">Indirizzo</th>

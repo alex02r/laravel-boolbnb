@@ -1,9 +1,19 @@
 @import '~bootstrap/scss/bootstrap';
 
-.color_main {
-    background-color: beige;
-}
-
 .color_card {
     background-color: rgb(251, 251, 226);
+}
+
+.btn-form-message {
+    background-color: #F15B5D;
+    color: white;
+    transition: 0.5s;
+
+    &:hover {
+        border: 1px solid #F15B5D;
+    }
+}
+
+.title-pink{
+    color: #F15B5D;
 }
