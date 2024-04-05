@@ -4,7 +4,7 @@
         <div class="row row-gap-4 justify-content-center">
             <div class="col-12">
                 <h2>Sezione sponsor</h2>
-                <p>Qui puoi scegliere il tipo di sponsorizzazione da assegnare al/ai tuo/tuoi appartamento/i. La sponsorizzazione ti permetterà di comparire direttamente nella home page di <a class="link-body-emphasis fw-bold text-decoration-none" href="http://localhost:5174/">BoolnBnB</a> e di essere sempre tra i primi risultati nella ricerca di un appartamento situato nella tua zona!</p>
+                <p>Qui puoi visualizzare le sponsorizzazioni del/dei tuo/tuoi appartamento/i. La sponsorizzazione ti permetterà di comparire direttamente nella home page di <a class="link-body-emphasis fw-bold text-decoration-none" href="http://localhost:5174/">BoolnBnB</a> e di essere sempre tra i primi risultati nella ricerca di un appartamento situato nella tua zona!</p>
             </div>
             @foreach ($sponsors as $sponsor)
                 <div class="col-12 col-md-6 col-lg-3">
@@ -24,6 +24,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="col-12">
+                <h4>Seleziona un <a href="{{ route('user.apartment.index') }}" class="link-dark link-underline-opacity-50 link-underline-opacity-100-hover">appartmento</a> da sponsorizzare</h4>
+            </div>
             @if (session('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
