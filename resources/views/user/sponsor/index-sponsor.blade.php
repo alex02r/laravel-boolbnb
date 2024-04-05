@@ -47,7 +47,15 @@
                             <td class="fw-bold">{{ $item->title }}</td>
                             <td class="d-none d-lg-table-cell">{{ $item->pivot->start_date }}</td>
                             <td class="d-none d-lg-table-cell">{{ $item->pivot->end_date }}</td>
-                            <td class="{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "text-success fw-bold" : 'text-danger fw-bold' }}">{{ date("Y-m-d H:i:s") < $item->pivot->end_date ? "In corso" : 'Finita' }}</td>
+                            <td >
+                                @if (date("Y-m-d H:i:s") >= $item->pivot->start_date && date("Y-m-d H:i:s") <= $item->pivot->end_date)
+                                    <span class="text-success fw-bold">in corso</span>
+                                @elseif (date("Y-m-d H:i:s") > $item->pivot->end_date)
+                                    <span class="text-warning fw-bold">finita</span>
+                                @else
+                                    <span class="text-warning fw-bold">da iniziare</span>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     @endforeach
