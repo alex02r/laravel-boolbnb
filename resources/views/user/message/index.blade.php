@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex flex-column m-2">
-                <h3 class="text-secondary text-uppercase">
-                    MESSAGGI RICEVUTI
+                <h3 class="fw-bold">
+                    Messaggi ricevuti
                 </h3>
             </div>
             <div class="col-12 mt-3">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th>Data di arrivo</th>
                             <th>Email</th>

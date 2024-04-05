@@ -9,7 +9,7 @@
             @foreach ($sponsors as $sponsor)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card">
-                        <h5 class="card-header bg-dark text-center text-white"> <i class="fas fa-crown"></i> {{ $sponsor->title }} <i class="fas fa-crown"></i></h5>
+                        <h5 class="card-header bg-pink text-center text-white"> <i class="fas fa-crown"></i> {{ $sponsor->title }} <i class="fas fa-crown"></i></h5>
                         <div class="card-body text-center">
                             <h5 class="card-title"> Prezzo : <span class="text-warning fw-bold">{{ $sponsor->price }}€</span></h5>
                             <h5 class="card-title"> Durata : {{ $sponsor->duration }}h</h5>
@@ -30,7 +30,7 @@
                 </div>
             @endif
             <table class="table table-striped mt-4">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>Nome appartamneto</th>
                         <th>Sponsor</th>
