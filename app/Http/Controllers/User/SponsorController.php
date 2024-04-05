@@ -128,7 +128,7 @@ class SponsorController extends Controller
         ]);
 
         $nonce = $form_data['payment_method_nonce'];
-        $sponsor= $form_data['sponsor'];
+        $sponsor = json_decode($form_data['sponsor']);
 
         $result = $gateway->transaction()->sale([
             'amount' => $sponsor->price,
