@@ -80,7 +80,13 @@ class ApartmentController extends Controller
             }
         }
 
-        $apartments = $query->with('sponsors')->get();
+        $apartments = $query->with('sponsors', 'services')->orderByRaw('CASE WHEN EXISTS (
+                SELECT * 
+                FROM apartment_sponsor 
+                WHERE apartment_sponsor.apartment_id = apartments.id 
+                AND apartment_sponsor.start_date <= NOW() 
+                AND apartment_sponsor.end_date >= NOW()
+            ) THEN 0 ELSE 1 END')->get();
         if(empty($query)){
             return response()->json([
                 'success' => false,
