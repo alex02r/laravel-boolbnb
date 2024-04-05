@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center my-3">
-            <div class="col-8">
+            <div class="col-md-9">
                 <h2 class="mb-4">Messaggio da {{ $message->user_mail }}</h2>
                 <div class="card color_card py-3">
                     <div class="card-body">
