@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
+        <h2 class="fs-4 my-4">
             {{ __('La tua Dashboard') }}
         </h2>
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard Utente') }}</div>
+                    <div class="card-header bg-pink text-white fw-semibold">{{ __('Dashboard Utente') }}</div>
 
                     <div class="card-body">
                         <p class="pb-2">Ora sei dentro!<br>
