@@ -106,7 +106,7 @@
                         @endforeach
                     ],
                     borderColor: 'rgb(241, 91, 93)',
-                    backgroundColor: 'transparent',
+                    backgroundColor: 'rgb(241, 91, 93)',
                 }, {
                     label: 'Messaggi',
                     data: [
@@ -115,7 +115,7 @@
                         @endforeach
                     ],
                     borderColor: 'rgb(54, 162, 235)',
-                    backgroundColor: 'transparent',
+                    backgroundColor: 'rgb(54, 162, 235)',
                 }],
             },
             options: {
