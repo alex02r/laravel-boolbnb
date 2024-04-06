@@ -5,10 +5,12 @@
         <div class="row justify-content-center my-3">
             <div class="col-md-8">
                 <div class="card color_card">
+                    {{-- IMMAGINE APPARTAMENTO --}}
                     <img class="card-img-top align-self-center"
                         src="{{ $apartment->cover_img != null ? asset('/storage/' . $apartment->cover_img) : asset('/img/image.png') }}"
                         alt="{{ $apartment->title }}">
                     <div class="card-body">
+                        {{-- INFO APPARTMANETO  --}}
                         <h2 class="card-title">{{ $apartment->title }}</h2>
                         <h5 class="text-secondary">{{ $apartment->address }}</h5>
                         <p class="card-text pt-2">
@@ -19,6 +21,7 @@
 
                             - <i class="fa-solid fa-house-circle-check title-pink"></i> {{ $apartment->square_meters }} Mq
                         </p>
+                        {{-- SERVIZI --}}
                         <div>
                             <p class="fw-bold m-0">Servizi disponibili</p>
                             @forelse ($apartment->services as $service)
@@ -27,7 +30,7 @@
                                 <p>Nessun servizio</p>
                             @endforelse
                         </div>
-
+                        {{-- SPONSORIZZAZIONI --}}
                         <div>
                             <p class="fw-bold m-0">Sponsorizzazioni attive</p>
                             @forelse ($apartment->sponsors as $sponsor)
@@ -41,18 +44,29 @@
                                 <p>Nessuna sponsorizzazione</p>
                             @endforelse
                         </div>
-
+                        {{-- GRAFICO --}}
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="mb-3">Statistiche numero di visualizzazioni e messaggi ricevuti</h5>
-                                @if ($visitCount > 0 || $messCount > 0)
-                                    <canvas id="myChart"></canvas>    
+                                {{-- SCRIVO LA CONDIZIONE IN UN CICLO FOREACH PER MOSTRARE IL GRAFICO SOLO SE CI SONO PRESENTI DEI DATI --}}
+                                @php
+                                    $hasData = false;
+                                    foreach ($monthlyCounts as $monthlyCount) {
+                                        if ($monthlyCount['views'] > 0 || $monthlyCount['messages'] > 0) {
+                                            $hasData = true;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                {{-- CONDIZIONE PER MOSTRARE IL GRAFICO --}}
+                                @if ($hasData)
+                                    <canvas id="myChart"></canvas>
                                 @else
                                     <p>Nessun dato disponibile per poter visualizzare il grafico.</p>
                                 @endif
                             </div>
                         </div>
-
+                        {{-- STRUMENTI PER MODIFICA O CANCELLARE L'APPARTAMENTO --}}
                         <div class="mt-5">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
                                 class="btn btn-sm btn-warning text-white fw-bold"><i class="fa-solid fa-edit"></i> MODIFICA</a>
@@ -78,17 +92,40 @@
         const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
-            type: 'doughnut',
+            type: 'line',
             data: {
-            labels: [ 'Visualizzazioni', 'Messaggi' ],
-            datasets: [{
-                label: ' Numero totale',
-                data: [{{ $visitCount }}, {{ $messCount }}],
-                borderColor: ['rgb(241, 91, 93)', 'rgb(54, 162, 235)'],
-                backgroundColor: ['rgb(241, 91, 93)', 'rgb(54, 162, 235)'],
-                hoverOffset: 4
-            }]
+                labels: [
+                    @foreach($monthlyCounts as $monthlyCount)
+                        '{{ $monthlyCount['month'] }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'Visualizzazioni',
+                    data: [
+                        @foreach($monthlyCounts as $monthlyCount)
+                            {{ $monthlyCount['views'] }},
+                        @endforeach
+                    ],
+                    borderColor: 'rgb(241, 91, 93)',
+                    backgroundColor: 'rgb(241, 91, 93)',
+                }, {
+                    label: 'Messaggi',
+                    data: [
+                        @foreach($monthlyCounts as $monthlyCount)
+                            {{ $monthlyCount['messages'] }},
+                        @endforeach
+                    ],
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgb(54, 162, 235)',
+                }],
             },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
 
