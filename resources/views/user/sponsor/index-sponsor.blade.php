@@ -48,7 +48,7 @@
                         <tr>
                             <td>{{ $apartment->title }}</td>
                             <td class="fw-bold">{{ $item->title }}</td>
-                            <td class="d-none d-lg-table-cell">{{ $item->pivot->start_date }}</td>
+                            <td class="d-none d-lg-table-cell">{{ \Carbon\Carbon::parse($item->pivot->start_date)->format('d/m/Y H:i:s') /*$item->pivot->start_date*/ }}</td>
                             <td class="d-none d-lg-table-cell">{{ $item->pivot->end_date }}</td>
                             <td >
                                 @if (date("Y-m-d H:i:s") >= $item->pivot->start_date && date("Y-m-d H:i:s") <= $item->pivot->end_date)
