@@ -1,11 +1,37 @@
 import './bootstrap';
 import '~resources/scss/app.scss';
 import * as bootstrap from 'bootstrap';
+import DataTable from 'datatables.net-bs5';
 import.meta.glob([
     '../img/**'
 ])
 import { services } from '@tomtom-international/web-sdk-services';
 import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+
+// DATA TABLE SPONSOR
+let table_sponsor = new DataTable('#table-sponsor', {
+    responsive: true,
+    language: {
+        url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/it-IT.json',
+    },
+    "columns": [
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+    ]
+});
 
 //dichiariamo il container dove inserire la searchbox
 const div = document.getElementById('search')
@@ -46,3 +72,5 @@ if (old != "") {
 btnAdd.addEventListener('click', ()=>{
     address.value = ttSearchBox.getValue()
 })
+
+

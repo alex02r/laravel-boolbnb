@@ -29,10 +29,10 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <table class="table table-striped mt-4">
-                <thead class="table-dark">
+            <table id="table-sponsor" class="table table-striped mt-4">
+                <thead>
                     <tr>
-                        <th>Nome appartamneto</th>
+                        <th>Nome appartamento</th>
                         <th>Sponsor</th>
                         <th class="d-none d-lg-table-cell">Data inizio</th>
                         <th class="d-none d-lg-table-cell">Data fine</th>
