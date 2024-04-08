@@ -72,8 +72,8 @@
                                 @if ( date("Y-m-d H:i:s") < $item->pivot->end_date)
                                     <tr>
                                         <th>{{ $item->title }}</th>
-                                        <th>{{ $item->pivot->start_date }}</th>
-                                        <th>{{ $item->pivot->end_date }}</th>
+                                        <th>{{ \Carbon\Carbon::parse($item->pivot->start_date)->format('d/m/Y H:i') }}</th>
+                                        <th>{{ \Carbon\Carbon::parse($item->pivot->end_date)->format('d/m/Y H:i') }}</th>
                                     </tr>
                                 @endif
                             @endforeach

@@ -12,7 +12,69 @@ import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 let table_sponsor = new DataTable('#table-sponsor', {
     responsive: true,
     language: {
-        url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/it-IT.json',
+        url: '/it_IT.json',
+    },
+    "columns": [
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+    ]
+});
+
+// DATA TABLE APARTMENT
+let table_apartment = new DataTable('#table-apartment', {
+    responsive: true,
+    language: {
+        url: '/it_IT.json',
+    },
+    "columns": [
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": false
+        },
+        {
+            "sortable": false
+        },
+    ]
+});
+
+// DATA TABLE MESSAGE
+let table_message = new DataTable('#table-message', {
+    responsive: true,
+    language: {
+        url: '/it_IT.json',
     },
     "columns": [
         {
