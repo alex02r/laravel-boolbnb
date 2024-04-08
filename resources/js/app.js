@@ -92,6 +92,9 @@ let table_message = new DataTable('#table-message', {
         {
             "sortable": true
         },
+        {
+            "sortable": false
+        },
     ]
 });
 

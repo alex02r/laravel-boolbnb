@@ -9,8 +9,8 @@
                 </h3>
             </div>
             <div class="col-12 mt-3">
-                <table class="table table-striped">
-                    <thead class="table-dark">
+                <table id="table-message" class="table table-striped">
+                    <thead>
                         <tr>
                             <th>Data di arrivo</th>
                             <th>Email</th>
