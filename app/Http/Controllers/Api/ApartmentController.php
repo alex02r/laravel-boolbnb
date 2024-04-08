@@ -80,7 +80,10 @@ class ApartmentController extends Controller
             }
         }
 
-        $apartments = $query->with('sponsors', 'services')->orderByRaw('CASE WHEN EXISTS (
+        $apartments = $query->with(['sponsors' => function ($query) {
+            $query->whereDate('start_date', '<=', now())
+                  ->whereDate('end_date', '>=', now());
+        }, 'services'])->orderByRaw('CASE WHEN EXISTS (
                 SELECT * 
                 FROM apartment_sponsor 
                 WHERE apartment_sponsor.apartment_id = apartments.id 
