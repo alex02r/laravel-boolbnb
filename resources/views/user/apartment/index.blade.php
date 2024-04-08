@@ -22,7 +22,7 @@
                             <th class="d-none d-lg-table-cell">Stanze</th>
                             <th class="d-none d-lg-table-cell">Bagni</th>
                             <th class="d-none d-lg-table-cell">Letti</th>
-                            <th>Mq</th>
+                            <th class="d-none d-lg-table-cell">Mq</th>
                             <th class="text-center">Visibilità</th>
                             <th>Sponsor</th>
                             <th>Strumenti</th>
@@ -36,14 +36,14 @@
                                 <td class="d-none d-lg-table-cell">{{ $apartment->rooms }}</td>
                                 <td class="d-none d-lg-table-cell">{{ $apartment->bathrooms }}</td>
                                 <td class="d-none d-lg-table-cell">{{ $apartment->beds }}</td>
-                                <td>{{ $apartment->square_meters }}</td>
+                                <td class="d-none d-lg-table-cell">{{ $apartment->square_meters }}</td>
                                 <td class="text-center">
                                     <i
                                         class="{{ $apartment->show ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
                                 </td>
                                 <td>
                                     {{-- se l'apartment non ha sponsor visualizziamo il link per la sponsorizzazione --}}
-                                    <a href="{{ route('user.sponsor.index') }}">Sponsorizza</a>
+                                    <a href="{{ route('user.createSponsor', ['apartment' => $apartment]) }}">Sponsorizza</a>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column d-md-flex flex-md-row gap-2">

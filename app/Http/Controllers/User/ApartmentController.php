@@ -125,12 +125,40 @@ class ApartmentController extends Controller
             return view('errors.not_authorized');
         }
 
-        // Recupero il conteggio delle visite per la pagina dell'appartamento
-        $visitCount = View::where('apartment_id', $apartment->id)->count();
+        // Recupero la data di inizio e fine dell'anno 2024
+        $startDate = Carbon::create(2024, 1, 1)->startOfMonth();
+        $endDate = Carbon::create(2024, 12, 31)->endOfMonth();
 
-        $messCount = Message::where('apartment_id', $apartment->id)->count();
+        // Creo un array vuoto per contenere i conteggi per ogni mese
+        $monthlyCounts = [];
 
-        return view('user.apartment.show', compact('apartment', 'message', 'visitCount', 'messCount'));
+        // Conteggio su ogni mese per recuperare i conteggi di visualizzazioni e messaggi
+        $currentDate = $startDate->copy();
+        while ($currentDate <= $endDate) {
+            // Recupero il conteggio delle visualizzazioni per il mese corrente
+            $visitCount = View::where('apartment_id', $apartment->id)
+                ->whereYear('created_at', $currentDate->year)
+                ->whereMonth('created_at', $currentDate->month)
+                ->count();
+
+            // Recupero il conteggio dei messaggi per il mese corrente
+            $messCount = Message::where('apartment_id', $apartment->id)
+                ->whereYear('created_at', $currentDate->year)
+                ->whereMonth('created_at', $currentDate->month)
+                ->count();
+
+            // Aggiungo i conteggi all'array mensile
+            $monthlyCounts[] = [
+                'month' => $currentDate->format('M Y'), // Formato del mese e dell'anno
+                'views' => $visitCount,
+                'messages' => $messCount,
+            ];
+
+            // Passo al mese successivo
+            $currentDate->addMonth();
+        }
+
+        return view('user.apartment.show', compact('apartment', 'message', 'monthlyCounts'));
     }
 
     /**

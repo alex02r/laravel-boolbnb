@@ -35,8 +35,8 @@ Route::middleware(['auth','verified'])
         // Rotta per gli appartamenti
         Route::resource('/apartment', ApartmentController::class);
         Route::resource('/sponsor', SponsorController::class);
-        Route::get('/createSponsor/{apartment}/{sponsor}', [SponsorController::class, 'createSponsor'])->name('createSponsor');
-        Route::post('/payments/{apartment}/{sponsor}', [SponsorController::class, 'payment'])->name('payment');
+        Route::get('/createSponsor/{apartment}', [SponsorController::class, 'createSponsor'])->name('createSponsor');
+        Route::post('/payments/{apartment}', [SponsorController::class, 'payment'])->name('payment');
         // Rotta per i messaggi
         Route::resource('/message', MessageController::class);
 });

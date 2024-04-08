@@ -99,7 +99,7 @@ class SponsorController extends Controller
     }
 
     // FUNZIONE PER CREARE UNO SPONSOR
-    public function createSponsor(Apartment $apartment, Sponsor $sponsor){
+    public function createSponsor(Apartment $apartment){
 
         if ($apartment->user_id == auth()->user()->id) {
 
@@ -110,15 +110,15 @@ class SponsorController extends Controller
                 'privateKey' => config('services.braintree.privateKey'),
             ]);
             $token = $gateway->clientToken()->generate();
-
-            return view('user.sponsor.sponsor-apartment', compact('apartment', 'sponsor', 'token'));
+            $sponsors = Sponsor::all();
+            return view('user.sponsor.sponsor-apartment', compact('apartment', 'sponsors', 'token'));
         }else {
             return view('errors.not_authorized');
         }
     }
 
     // FUNZIONE PER IL PAGAMENTO
-    public function payment(StoreSponsorApartmentRequest $request, Apartment $apartment, Sponsor $sponsor){
+    public function payment(StoreSponsorApartmentRequest $request, Apartment $apartment){
 
         $form_data = $request->all();
 
@@ -131,6 +131,7 @@ class SponsorController extends Controller
         ]);
 
         $nonce = $form_data['payment_method_nonce'];
+        $sponsor = json_decode($form_data['sponsor']);
 
         $result = $gateway->transaction()->sale([
             'amount' => $sponsor->price,
