@@ -1,11 +1,102 @@
 import './bootstrap';
 import '~resources/scss/app.scss';
 import * as bootstrap from 'bootstrap';
+import DataTable from 'datatables.net-bs5';
 import.meta.glob([
     '../img/**'
 ])
 import { services } from '@tomtom-international/web-sdk-services';
 import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+
+// DATA TABLE SPONSOR
+let table_sponsor = new DataTable('#table-sponsor', {
+    responsive: true,
+    language: {
+        url: '/it_IT.json',
+    },
+    "columns": [
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+    ]
+});
+
+// DATA TABLE APARTMENT
+let table_apartment = new DataTable('#table-apartment', {
+    responsive: true,
+    language: {
+        url: '/it_IT.json',
+    },
+    "columns": [
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": false
+        },
+        {
+            "sortable": false
+        },
+    ]
+});
+
+// DATA TABLE MESSAGE
+let table_message = new DataTable('#table-message', {
+    responsive: true,
+    language: {
+        url: '/it_IT.json',
+    },
+    "columns": [
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": true
+        },
+        {
+            "sortable": false
+        },
+    ]
+});
 
 //dichiariamo il container dove inserire la searchbox
 const div = document.getElementById('search')
@@ -46,3 +137,5 @@ if (old != "") {
 btnAdd.addEventListener('click', ()=>{
     address.value = ttSearchBox.getValue()
 })
+
+

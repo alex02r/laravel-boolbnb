@@ -9,8 +9,8 @@
                 </h3>
             </div>
             <div class="col-12 mt-3">
-                <table class="table table-striped">
-                    <thead class="table-dark">
+                <table id="table-message" class="table table-striped">
+                    <thead>
                         <tr>
                             <th>Data di arrivo</th>
                             <th>Email</th>
@@ -23,7 +23,7 @@
                     <tbody>
                             @forelse ($messages as $message)
                                 <tr>
-                                    <td>{{ $message->created_at }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</td>
                                     <td>{{ $message->user_mail }}</td>
                                     <td class="d-none d-md-table-cell"><a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}">{{ $message->title }}</a></td>
                                     <td class="d-none d-lg-table-cell">{{ Str::limit($message->message, 15, '...') }}</td>

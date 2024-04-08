@@ -9,7 +9,7 @@
                     <div class="card-body">
                          <h5>Per appartamento: <a href="{{ route('user.apartment.show', ['apartment' => $apartment]) }}"> {{ $apartment->title }}</a> </h5>
                         <p> <strong>Contenuto del messaggio:</strong> <span>{{ $message->message }}</span></p>
-                        <p> <strong>Messaggio inviato il:</strong> <span class="text-secondary">{{ $message->created_at }}</span></p>
+                        <p> <strong>Messaggio inviato il:</strong> <span class="text-secondary">{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</span></p>
                         {{-- MODALE DELETE --}}
                         <button class="btn_delete btn btn-sm btn-danger" data-bs-toggle="modal"
                             data-bs-target="#modal_message_delete-{{ $message->id }}">

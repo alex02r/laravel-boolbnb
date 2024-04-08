@@ -48,6 +48,6 @@ class Apartment extends Model
 
     // RELAZIONE CON TABELLA SPONSORS
     public function sponsors(){
-        return $this->belongsToMany(Sponsor::class)->withPivot('start_date', 'end_date');;
+        return $this->belongsToMany(Sponsor::class)->withPivot('start_date', 'end_date');
     }
 }

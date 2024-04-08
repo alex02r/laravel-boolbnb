@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateSponsorRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use Braintree;
+use Illuminate\Support\Facades\DB;
 
 class SponsorController extends Controller
 {
@@ -20,7 +21,9 @@ class SponsorController extends Controller
     public function index()
     {
         $sponsors = Sponsor::all();
+        
         $apartments = Apartment::where('user_id', auth()->user()->id)->get();
+
         if (count($apartments) > 0) {
             
             return view('user.sponsor.index-sponsor', compact('sponsors','apartments'));
