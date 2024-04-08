@@ -175,7 +175,7 @@ class SponsorController extends Controller
                 //imopostiamo la data di fine con le ore dello sponsor
                 $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
                 //creiamo la relazione 
-                $apartment->sponsors()->attach($sponsor, ['start_date' => $start_date, 'end_date' => $end_date]);
+                $apartment->sponsors()->attach($sponsor->id, ['start_date' => $start_date, 'end_date' => $end_date]);
             }else {
                 return view('errors.not_authorized');
             }

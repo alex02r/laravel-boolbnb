@@ -54,7 +54,7 @@
                                 @if (date("Y-m-d H:i:s") >= $item->pivot->start_date && date("Y-m-d H:i:s") <= $item->pivot->end_date)
                                     <span class="text-success fw-bold">in corso</span>
                                 @elseif (date("Y-m-d H:i:s") > $item->pivot->end_date)
-                                    <span class="text-warning fw-bold">finita</span>
+                                    <span class="text-danger fw-bold">finita</span>
                                 @else
                                     <span class="text-warning fw-bold">da iniziare</span>
                                 @endif
