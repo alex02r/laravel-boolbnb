@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-12 text-center ">
                 <div class="content">
-                    <h1>404</h1>
+                    <h1>404 - Not Found</h1>
                     <p>Oops! Sembra che tu stia cercando qualcosa che <strong>non è presente</strong> all'interno della piattaforma.</p>
                     <p>Ritorna alla tua <a href="{{ route('user.dashboard') }}">dashboard personale</a>.</p>
                 </div>
