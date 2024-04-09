@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center my-3">
-            <div class="col-md-8">
+            <div class="col-lg-8">
                 <div class="card color_card">
                     {{-- IMMAGINE APPARTAMENTO --}}
                     <img class="card-img-top align-self-center"
@@ -15,7 +15,7 @@
                         <h5 class="text-secondary">{{ $apartment->address }}</h5>
                         <p class="card-text pt-2">
                             <i class="fa-solid fa-house title-pink"></i> {{ $apartment->rooms }} {{ $apartment->rooms == 1 ? ' Camera' : ' Camere' }}
-                            - <i class="fa-solid fa-toilet title-pink"></i> {{ $apartment->bathrooms }} {{ $apartment->bathrooms == 1 ? ' Bagno' : ' Bagni' }}
+                            - <i class="fa-solid fa-bath title-pink"></i> {{ $apartment->bathrooms }} {{ $apartment->bathrooms == 1 ? ' Bagno' : ' Bagni' }}
 
                             - <i class="fa-solid fa-bed title-pink"></i> {{ $apartment->beds }} {{ $apartment->beds == 1 ? ' Letto' : ' Letti' }}
 
@@ -32,14 +32,22 @@
                         </div>
                         {{-- SPONSORIZZAZIONI --}}
                         <div>
-                            <p class="fw-bold m-0">Sponsorizzazioni attive</p>
+                            <p class="fw-bold m-0">Storico sponsorizzazioni</p>
                             @forelse ($apartment->sponsors as $sponsor)
                                 <ul class="list-unstyled">
                                     <li>Nome: {{ $sponsor->title }}</li>
-                                    <li>Inizio: {{ $sponsor->pivot->start_date }}</li>
-                                    <li>Fine: {{ $sponsor->pivot->end_date }}</li>
+                                    <li>Inizio: {{ \Carbon\Carbon::parse($sponsor->pivot->start_date)->locale('it')->isoFormat('dddd D MMMM Y') }} alle {{ \Carbon\Carbon::parse($sponsor->pivot->start_date)->format('H:i') }}</li>
+                                    <li>Fine: {{ \Carbon\Carbon::parse($sponsor->pivot->end_date)->locale('it')->isoFormat('dddd D MMMM Y') }} alle {{ \Carbon\Carbon::parse($sponsor->pivot->end_date)->format('H:i') }}</li>
+                                    <li>Stato: 
+                                        @if (\Carbon\Carbon::now()->setTimezone('Europe/Rome') >= $sponsor->pivot->start_date && \Carbon\Carbon::now()->setTimezone('Europe/Rome') <= $sponsor->pivot->end_date)
+                                        <span class="text-success fw-bold">In corso</span>
+                                        @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') > $sponsor->pivot->end_date)
+                                            <span class="text-danger fw-bold">Finita</span>
+                                        @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') < $sponsor->pivot->start_date)
+                                            <span class="text-warning fw-bold">Da iniziare</span>
+                                        @endif
+                                    </li>
                                 </ul>
-                                <span> </span>
                             @empty
                                 <p>Nessuna sponsorizzazione</p>
                             @endforelse
@@ -60,7 +68,9 @@
                                 @endphp
                                 {{-- CONDIZIONE PER MOSTRARE IL GRAFICO --}}
                                 @if ($hasData)
-                                    <canvas id="myChart"></canvas>
+                                    <canvas id="myViews"></canvas>
+                                    <hr>
+                                    <canvas id="myMessages"></canvas>
                                 @else
                                     <p>Nessun dato disponibile per poter visualizzare il grafico.</p>
                                 @endif
@@ -69,9 +79,9 @@
                         {{-- STRUMENTI PER MODIFICA O CANCELLARE L'APPARTAMENTO --}}
                         <div class="mt-5">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
-                                class="btn btn-sm btn-warning text-white fw-bold"><i class="fa-solid fa-edit"></i> MODIFICA</a>
-                            <a href="{{ route('user.createSponsor', ['apartment' => $apartment]) }}" class="btn btn-sm btn-primary fw-bold"><i class="fas fa-hand-holding-dollar"></i>SPONSORIZZA</a>   
-                            <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
+                                class="btn btn-sm btn-warning text-white fw-bold m-1"><i class="fa-solid fa-edit"></i> MODIFICA</a>
+                            <a href="{{ route('user.createSponsor', ['apartment' => $apartment]) }}" class="btn btn-sm btn-primary fw-bold"><i class="fas fa-hand-holding-dollar"></i> SPONSORIZZA</a>   
+                            <button class="btn_delete btn btn-sm btn-danger text-white fw-bold m-1" data-bs-toggle="modal"
                                 data-bs-target="#modal_apartment_delete-{{ $apartment->id }}"><i class="fa-solid fa-trash"></i> 
                                 ELIMINA
                             </button>
@@ -89,9 +99,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
+        const view = document.getElementById('myViews');
+        new Chart(view, {
             type: 'line',
             data: {
                 labels: [
@@ -100,7 +109,7 @@
                     @endforeach
                 ],
                 datasets: [{
-                    label: 'Visualizzazioni',
+                    label: 'N. Visualizzazioni',
                     data: [
                         @foreach($monthlyCounts as $monthlyCount)
                             {{ $monthlyCount['views'] }},
@@ -108,8 +117,28 @@
                     ],
                     borderColor: 'rgb(241, 91, 93)',
                     backgroundColor: 'rgb(241, 91, 93)',
-                }, {
-                    label: 'Messaggi',
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const mess = document.getElementById('myMessages');
+        new Chart(mess, {
+            type: 'line',
+            data: {
+                labels: [
+                    @foreach($monthlyCounts as $monthlyCount)
+                        '{{ $monthlyCount['month'] }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'N. Messaggi',
                     data: [
                         @foreach($monthlyCounts as $monthlyCount)
                             {{ $monthlyCount['messages'] }},

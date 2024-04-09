@@ -32,8 +32,8 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <table id="table-sponsor" class="table table-striped mt-4">
-                <thead>
+            <table class="table table-striped mt-4">
+                <thead class="table-dark">
                     <tr>
                         <th>Nome appartamento</th>
                         <th>Sponsor</th>
