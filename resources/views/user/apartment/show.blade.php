@@ -77,9 +77,9 @@
                         {{-- STRUMENTI PER MODIFICA O CANCELLARE L'APPARTAMENTO --}}
                         <div class="mt-5">
                             <a href="{{ route('user.apartment.edit', ['apartment' => $apartment->id]) }}"
-                                class="btn btn-sm btn-warning text-white fw-bold"><i class="fa-solid fa-edit"></i> MODIFICA</a>
-                            <a href="{{ route('user.createSponsor', ['apartment' => $apartment]) }}" class="btn btn-sm btn-primary fw-bold"><i class="fas fa-hand-holding-dollar"></i>SPONSORIZZA</a>   
-                            <button class="btn_delete btn btn-sm btn-danger text-white fw-bold" data-bs-toggle="modal"
+                                class="btn btn-sm btn-warning text-white fw-bold m-1"><i class="fa-solid fa-edit"></i> MODIFICA</a>
+                            <a href="{{ route('user.createSponsor', ['apartment' => $apartment]) }}" class="btn btn-sm btn-primary fw-bold"><i class="fas fa-hand-holding-dollar"></i> SPONSORIZZA</a>   
+                            <button class="btn_delete btn btn-sm btn-danger text-white fw-bold m-1" data-bs-toggle="modal"
                                 data-bs-target="#modal_apartment_delete-{{ $apartment->id }}"><i class="fa-solid fa-trash"></i> 
                                 ELIMINA
                             </button>
