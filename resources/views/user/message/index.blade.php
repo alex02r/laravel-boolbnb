@@ -10,7 +10,7 @@
             </div>
             <div class="col-12 mt-3">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th>Data di arrivo</th>
                             <th class="d-none d-md-table-cell">Email</th>

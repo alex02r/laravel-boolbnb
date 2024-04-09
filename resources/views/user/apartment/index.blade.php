@@ -15,7 +15,7 @@
             </div>
             <div class="col-12 ">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th>Titolo</th>
                             <th class="d-none d-lg-table-cell">Indirizzo</th>

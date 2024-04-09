@@ -33,7 +33,7 @@
                 </div>
             @endif
             <table class="table table-striped mt-4">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>Nome appartamento</th>
                         <th>Sponsor</th>

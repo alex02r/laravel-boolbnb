@@ -15,7 +15,7 @@
                         <h5 class="text-secondary">{{ $apartment->address }}</h5>
                         <p class="card-text pt-2">
                             <i class="fa-solid fa-house title-pink"></i> {{ $apartment->rooms }} {{ $apartment->rooms == 1 ? ' Camera' : ' Camere' }}
-                            - <i class="fa-solid fa-toilet title-pink"></i> {{ $apartment->bathrooms }} {{ $apartment->bathrooms == 1 ? ' Bagno' : ' Bagni' }}
+                            - <i class="fa-solid fa-bath title-pink"></i> {{ $apartment->bathrooms }} {{ $apartment->bathrooms == 1 ? ' Bagno' : ' Bagni' }}
 
                             - <i class="fa-solid fa-bed title-pink"></i> {{ $apartment->beds }} {{ $apartment->beds == 1 ? ' Letto' : ' Letti' }}
 
