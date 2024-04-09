@@ -158,7 +158,6 @@ class SponsorController extends Controller
                             $hours = '+'.$sponsor->duration.'hours';
                             //aggiungiamo la durata alla data di fine
                             $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($item->pivot->end_date)));
-                            dd($end_date);
                             $item->pivot->end_date = $end_date;
                             $item->pivot->sponsor_id = $sponsor->id;
                             $item->pivot->save();
