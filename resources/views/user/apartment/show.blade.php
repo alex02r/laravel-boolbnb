@@ -68,7 +68,9 @@
                                 @endphp
                                 {{-- CONDIZIONE PER MOSTRARE IL GRAFICO --}}
                                 @if ($hasData)
-                                    <canvas id="myChart"></canvas>
+                                    <canvas id="myViews"></canvas>
+                                    <hr>
+                                    <canvas id="myMessages"></canvas>
                                 @else
                                     <p>Nessun dato disponibile per poter visualizzare il grafico.</p>
                                 @endif
@@ -97,9 +99,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
+        const view = document.getElementById('myViews');
+        new Chart(view, {
             type: 'line',
             data: {
                 labels: [
@@ -108,7 +109,7 @@
                     @endforeach
                 ],
                 datasets: [{
-                    label: 'Visualizzazioni',
+                    label: 'N. Visualizzazioni',
                     data: [
                         @foreach($monthlyCounts as $monthlyCount)
                             {{ $monthlyCount['views'] }},
@@ -116,8 +117,28 @@
                     ],
                     borderColor: 'rgb(241, 91, 93)',
                     backgroundColor: 'rgb(241, 91, 93)',
-                }, {
-                    label: 'Messaggi',
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const mess = document.getElementById('myMessages');
+        new Chart(mess, {
+            type: 'line',
+            data: {
+                labels: [
+                    @foreach($monthlyCounts as $monthlyCount)
+                        '{{ $monthlyCount['month'] }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'N. Messaggi',
                     data: [
                         @foreach($monthlyCounts as $monthlyCount)
                             {{ $monthlyCount['messages'] }},
