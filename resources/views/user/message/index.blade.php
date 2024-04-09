@@ -9,14 +9,14 @@
                 </h3>
             </div>
             <div class="col-12 mt-3">
-                <table id="table-message" class="table table-striped">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Data di arrivo</th>
-                            <th>Email</th>
+                            <th class="d-none d-md-table-cell">Email</th>
                             <th class="d-none d-md-table-cell">Per appartamento</th>
-                            <th class="d-none d-lg-table-cell">Messaggio</th>
-                            <th class="text-center">Visualizzato</th>
+                            <th>Messaggio</th>
+                            <th class="text-center d-none d-lg-table-cell">Visualizzato</th>
                             <th>Strumenti</th>
                         </tr>
                     </thead>
@@ -24,10 +24,10 @@
                             @forelse ($messages as $message)
                                 <tr>
                                     <td>{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</td>
-                                    <td>{{ $message->user_mail }}</td>
+                                    <td class="d-none d-md-table-cell" >{{ $message->user_mail }}</td>
                                     <td class="d-none d-md-table-cell"><a href="{{ route('user.apartment.show', ['apartment' => $message->apartment_id]) }}">{{ $message->title }}</a></td>
-                                    <td class="d-none d-lg-table-cell">{{ Str::limit($message->message, 15, '...') }}</td>
-                                    <td class="text-center">
+                                    <td>{{ Str::limit($message->message, 15, '...') }}</td>
+                                    <td class="text-center d-none d-lg-table-cell">
                                         <i class="{{ $message->viewed ? 'fas fa-check text-success' : 'fas fa-x text-danger' }}"></i>
                                     </td>
                                     <td>
@@ -46,7 +46,7 @@
                                 @include('user.message.modal_delete')
                             @empty
                                 <tr>
-                                    <td colspan="5" scope="row">Nessun messaggio trovato</td>
+                                    <td colspan="5">Nessun messaggio trovato</td>
                                 </tr>
                             @endforelse
                         

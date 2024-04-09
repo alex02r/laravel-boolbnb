@@ -32,7 +32,7 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <table id="table-sponsor" class="table table-striped mt-4">
+            <table class="table table-striped mt-4">
                 <thead>
                     <tr>
                         <th>Nome appartamento</th>
