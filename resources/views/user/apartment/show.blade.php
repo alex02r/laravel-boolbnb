@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center my-3">
-            <div class="col-md-8">
+            <div class="col-lg-8">
                 <div class="card color_card">
                     {{-- IMMAGINE APPARTAMENTO --}}
                     <img class="card-img-top align-self-center"
@@ -32,14 +32,22 @@
                         </div>
                         {{-- SPONSORIZZAZIONI --}}
                         <div>
-                            <p class="fw-bold m-0">Sponsorizzazioni attive</p>
+                            <p class="fw-bold m-0">Storico sponsorizzazioni</p>
                             @forelse ($apartment->sponsors as $sponsor)
                                 <ul class="list-unstyled">
                                     <li>Nome: {{ $sponsor->title }}</li>
-                                    <li>Inizio: {{ $sponsor->pivot->start_date }}</li>
-                                    <li>Fine: {{ $sponsor->pivot->end_date }}</li>
+                                    <li>Inizio: {{ \Carbon\Carbon::parse($sponsor->pivot->start_date)->locale('it')->isoFormat('dddd D MMMM Y') }} alle {{ \Carbon\Carbon::parse($sponsor->pivot->start_date)->format('H:i') }}</li>
+                                    <li>Fine: {{ \Carbon\Carbon::parse($sponsor->pivot->end_date)->locale('it')->isoFormat('dddd D MMMM Y') }} alle {{ \Carbon\Carbon::parse($sponsor->pivot->end_date)->format('H:i') }}</li>
+                                    <li>Stato: 
+                                        @if (\Carbon\Carbon::now()->setTimezone('Europe/Rome') >= $sponsor->pivot->start_date && \Carbon\Carbon::now()->setTimezone('Europe/Rome') <= $sponsor->pivot->end_date)
+                                        <span class="text-success fw-bold">In corso</span>
+                                        @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') > $sponsor->pivot->end_date)
+                                            <span class="text-danger fw-bold">Finita</span>
+                                        @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') < $sponsor->pivot->start_date)
+                                            <span class="text-warning fw-bold">Da iniziare</span>
+                                        @endif
+                                    </li>
                                 </ul>
-                                <span> </span>
                             @empty
                                 <p>Nessuna sponsorizzazione</p>
                             @endforelse
