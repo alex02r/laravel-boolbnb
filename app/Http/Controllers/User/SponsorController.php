@@ -156,7 +156,8 @@ class SponsorController extends Controller
                         if ( $start_date < $item->pivot->end_date && $start_date > $item->pivot->start_date) {
                             //è già presente una sponsor in corso, aumentiamo il tempo della sponsor
                             $hours = '+'.$sponsor->duration.'hours';
-                            $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($start_date)));
+                            //aggiungiamo la durata alla data di fine
+                            $end_date = date('Y-m-d H:i:s',strtotime($hours,strtotime($item->pivot->end_date)));
                             $item->pivot->end_date = $end_date;
                             $item->pivot->sponsor_id = $sponsor->id;
                             $item->pivot->save();
