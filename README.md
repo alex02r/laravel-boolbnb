@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## 💼 BoolBnb
+## 💼 BoolBnb BACK-END
 Realizzato come progetto di gruppo finale per il corso come *jr full stack web developer*, **BoolBnB** è una *web application divisa* in due parti principali: una **back-end** sviluppata in *Laravel* per la gestione degli appartamenti da parte degli utenti registrati e una **front-end** sviluppata in *Vue* e *Vite* per la visualizzazione e la ricerca degli appartamenti.
   
 
