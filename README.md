@@ -7,58 +7,34 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## 💼 BoolBnb
+Realizzato come progetto di gruppo finale per il corso come *jr full stack web developer*, **BoolBnB** è una *web application divisa* in due parti principali: una **back-end** sviluppata in *Laravel* per la gestione degli appartamenti da parte degli utenti registrati e una **front-end** sviluppata in *Vue* e *Vite* per la visualizzazione e la ricerca degli appartamenti.
+  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<details>
+  <summary><a href="https://github.com/alex02r/vite-boolbnb">vite-boolbnb (Front-end)</a> </summary>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  - Funzionaluta:
+    - **Homepage Dinamica:** La homepage presenta in evidenza gli appartamenti sponsorizzati, offrendo agli utenti una panoramica rapida delle migliori offerte disponibili.
+    - **Ricerca Avanzata:** Gli utenti possono effettuare una ricerca avanzata degli appartamenti utilizzando una barra di ricerca con autocompletamento, filtrando per indirizzo e raggio di distanza desiderato.
+    - **Visualizzazione Dettagliata Appartamento:** Gli utenti possono visualizzare i dettagli completi di ciascun appartamento, inclusi i servizi offerti, le immagini e una mappa interattiva per identificarne la posizione esatta.
+    - **Messaggistica Diretta:** Gli utenti possono inviare messaggi diretti ai proprietari degli appartamenti direttamente dalla pagina di visualizzazione dell'appartamento, semplificando il processo di contatto e di richiesta di informazioni aggiuntive.
+</details>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Funzionalità
 
-## Learning Laravel
+- **Registrazione e Autenticazione Utenti:** Gli utenti possono registrarsi e accedere alla piattaforma per gestire i propri appartamenti.
+- **Inserimento Appartamenti:** Gli utenti possono inserire le informazioni dei propri appartamenti nel database, inclusi dettagli come l'indirizzo, le caratteristiche e le immagini.
+- **Sponsorizzazione Appartamenti:** Gli utenti hanno la possibilità di sponsorizzare i propri appartamenti, garantendo loro una maggiore visibilità sulla home page o nelle pagine di ricerca.
+- **Statistiche di Visualizzazione:** Gli utenti possono visualizzare le statistiche relative alle visualizzazioni dei propri appartamenti, consentendo loro di valutare l'efficacia delle loro inserzioni.
+- **Messaggistica Integrata:** Gli utenti possono ricevere e gestire i messaggi ricevuti relativi ai propri appartamenti, tutto in una sezione dedicata dell'applicazione.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Collaboratori
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| [<img src="https://avatars.githubusercontent.com/u/146065546?v=4" width="30px;" alt="Immagine Profilo Dorìn"/>](https://github.com/DorinVieru) | [<img src="https://avatars.githubusercontent.com/u/146549805?v=4" width="30px;" alt="Immagine Profilo Igor"/>](https://github.com/igorgaidolfi) | [<img src="https://avatars.githubusercontent.com/u/146652757?v=4" width="30px;" alt="Immagine Profilo Fabio"/>](https://github.com/Fabio9494) | [<img src="https://avatars.githubusercontent.com/u/83594117?v=4" width="30px;" alt="Immagine Profilo Asaf"/>](https://github.com/asafcastigliano) |
+|---|---|---|---|
+| **Dorìn** | **Igor** | **Fabio** | **Asaf** |
 
-## Laravel Sponsors
+### Conclusioni:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Il progetto Gestione Affitti Appartamenti Online offre agli utenti un'esperienza completa e intuitiva per la gestione e la ricerca di appartamenti in affitto. Grazie alle funzionalità fornite sia dalla parte Laravel che da quella Vue, gli utenti possono trovare, pubblicare e gestire le loro offerte immobiliari in modo efficiente e conveniente.
